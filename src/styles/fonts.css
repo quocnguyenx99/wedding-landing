@@ -1,0 +1,42 @@
+/* Acid Grotesk */
+@font-face {
+  font-family: "Acid Grotesk";
+  src: url("/public/fonts/acid-grotesk/acid-grotesk-200.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Acid Grotesk";
+  src: url("/public/fonts/acid-grotesk/acid-grotesk-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Acid Grotesk";
+  src: url("/public/fonts/acid-grotesk/acid-grotesk-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tempting */
+@font-face {
+  font-family: "Tempting";
+  src: url("/public/fonts/tempting/Tempting-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Beautique Display */
+@font-face {
+  font-family: "Beautique Display";
+  src: url("/public/fonts/beautique-display/BeautiqueDisplay-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
