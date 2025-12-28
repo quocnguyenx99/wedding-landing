@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"; // Cập nhật import useState
+import React, { useMemo, useState } from "react";
 import heroSrc from "../assets/images/banner-img.jpg";
 
 import sectionInfo1 from "../assets/images/section-info-1.jpg";
@@ -36,11 +36,12 @@ import birdRight1 from "../assets/images/bird2/bird-right-1.png";
 import birdRight2 from "../assets/images/bird2/bird-right-2.png";
 import birdRight3 from "../assets/images/bird2/bird-right-3.png";
 
-// Import hình bản đồ 
-import mapAdventure from "../assets/images/section-after-wedding-map.jpg"; 
+// Import hình bản đồ
+import mapAdventure from "../assets/images/section-after-wedding-map.jpg";
 
-// Import hình ảnh cho section cuối (Hãy đảm bảo file này tồn tại hoặc đổi tên)
+// Import hình ảnh cho section cuối
 import footerImg from "../assets/images/section-end.jpg";
+import { Link } from "react-router-dom";
 
 function Home() {
   // --- STATE CHO RSVP FORM ---
@@ -134,7 +135,7 @@ function Home() {
       </style>
 
       {/* HERO */}
-      <section className="relative h-[76vh] min-h-[560px] w-full overflow-hidden">
+      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] w-full overflow-hidden">
         {/* Banner image */}
         <img
           src={heroSrc}
@@ -165,22 +166,22 @@ function Home() {
 
         {/* Center content */}
         <div className="absolute inset-0 z-20 flex justify-center px-4 mt-36">
-          <div className="relative top-0 flex flex-row  text-wedding-white">
-            <div className="font-script text-wedding-beige text-[4rem] leading-[0.6] md:text-[16rem] -mr-2 md:-mr-6 pb-4">
+          <div className="relative top-0 md:top-20 flex flex-row text-wedding-white">
+            <div className="font-script text-wedding-beige text-[4rem] leading-[0.6] md:text-[7rem] -mr-2  pb-4">
               S
             </div>
 
             {/* Right side content */}
-            <div className="flex flex-col items-start">
-              <p className="font-sans text-wedding-beige font-light text-[10px] md:text-[16px] mb-1 ml-6 md:ml-32 whitespace-nowrap">
+            <div className="flex flex-col items-start md:items-center">
+              <p className="font-sans text-wedding-beige font-light text-[10px] md:text-[16px] mb-1 ml-6 md:ml-8 whitespace-nowrap">
                 Hasley Huong Nghiem &amp; JB Moni Lek
               </p>
 
-              <h1 className="font-script text-wedding-beige text-4xl font-normal leading-none md:text-8xl">
+              <h1 className="font-script text-wedding-beige text-4xl font-normal leading-none md:text-5xl md:mr-8">
                 ave the date
               </h1>
 
-              <p className="font-sans text-wedding-beige text-[20px] font-extralight tracking-[0.1em] md:text-4xl w-full text-center">
+              <p className="font-sans text-wedding-beige text-[20px] font-extralight tracking-[0.1em] md:text-3xl md:mr-8 w-full text-center">
                 08 / 08 / 2026
               </p>
             </div>
@@ -190,18 +191,18 @@ function Home() {
 
       {/* --- SECTION: WE ARE GETTING MARRIED --- */}
 
-      <section className="relative z-30 w-full bg-wedding-beige -mt-80 rounded-t-[50vw] pt-24 pb-48 px-6 text-center overflow-hidden">
+      <section className="relative z-30 w-full bg-wedding-beige -mt-80 md:-mt-[420px] rounded-t-[50vw] pt-24 md:pt-32 pb-48 md:pb-[480px] px-6 text-center overflow-hidden">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto space-y-4">
-          <h2 className="font-script text-[28px] md:text-8xl">
+          <h2 className="font-script text-[28px] md:text-4xl">
             We are getting married!
           </h2>
 
-          <div className="max-w-xl text-center">
-            <p className="font-sans font-light text-[8px] md:text-lg tracking-wide leading-relaxed">
+          <div className="max-w-2xl text-center">
+            <p className="font-sans font-light text-[8px] md:text-base tracking-wide leading-relaxed">
               We are delighted to invite you to celebrate our wedding as we
               exchange vows.
             </p>
-            <p className="font-sans font-light text-[8px] md:text-lg tracking-wide leading-relaxed mt-2">
+            <p className="font-sans font-light text-[8px] md:text-base tracking-wide leading-relaxed mt-2">
               and share this joyful moment with our dearest family and friends.
             </p>
           </div>
@@ -209,29 +210,29 @@ function Home() {
       </section>
 
       {/* --- IMAGE GALLERY SECTION --- */}
-      <section className="relative z-40 mx-auto -mt-44 h-[390px] w-full max-w-6xl md:-mt-64 md:h-[900px]">
-        <div className="absolute left-1/2 top-0 z-10 h-[300px] w-[180px] -translate-x-1/2 overflow-hidden rounded-t-full md:h-[750px] md:w-[450px]">
+      <section className="relative z-40 mx-auto -mt-44 md:-mt-[420px] h-[390px] w-full max-w-6xl md:h-[900px]">
+        <div className="absolute left-1/2 top-0 z-10 h-[300px] w-[180px] -translate-x-1/2 overflow-hidden rounded-t-full md:h-[650px] md:w-[380px]">
           <img
             src={sectionInfoMain}
             alt="Center Couple"
             className="h-full w-full object-cover"
           />
           {/* Text Overlay: Hương and Moni */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-6 text-white md:pt-24">
-            <span className="font-display text-2xl font-medium md:text-8xl drop-shadow-lg">
+          <div className="absolute inset-0 flex flex-col items-center justify-start pt-4 md:pt-10 text-white">
+            <span className="font-display text-2xl font-medium md:text-6xl drop-shadow-lg">
               Hương
             </span>
-            <span className="my-1 font-display text-xs font-light tracking-widest md:my-3 md:text-xl">
+            <span className="my-1 font-display text-xs font-light tracking-widest md:my-3 md:text-2xl">
               and
             </span>
-            <span className="font-display text-2xl font-medium md:text-8xl drop-shadow-lg">
+            <span className="font-display text-2xl font-medium md:text-6xl drop-shadow-lg">
               Moni
             </span>
           </div>
         </div>
         {/* 2. LEFT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-16 left-2 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-20 md:left-10 md:h-[450px] md:w-[320px]">
+        <div className="absolute bottom-16 left-2 md:left-6 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-52 md:h-[300px] md:w-[180px]">
           <img
             src={sectionInfo1}
             alt="Left Moment"
@@ -241,7 +242,7 @@ function Home() {
 
         {/* 3. RIGHT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-10 md:right-10 md:h-[350px] md:w-[480px]">
+        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-40 md:right-0 md:h-[200px] md:w-[380px]">
           <img
             src={sectionInfo2}
             alt="Right Moment"
@@ -251,8 +252,8 @@ function Home() {
       </section>
 
       {/* --- THREE IMAGES SECTION AND WEDDING INFO--- */}
-      <section className="relative  z-30 w-full bg-wedding-beige mt-2 px-0 md:px-10 md:pb-32">
-        <div className="grid grid-cols-3 gap-1 md:gap-4 max-w-7xl mx-auto h-[200px] md:h-[600px]">
+      <section className="relative z-30 w-full bg-wedding-beige mt-2 md:-mt-32 px-0 md:pb-32">
+        <div className="grid grid-cols-3 gap-1 md:gap-2 max-w-7xl mx-auto h-[200px] md:h-[380px]">
           {/* Image 1 */}
           <div className="relative w-full h-full overflow-hidden">
             <img
@@ -356,7 +357,7 @@ function Home() {
 
           {/* 2. Right Column: Timeline (60%) */}
           <div className="w-[60%] flex flex-col pt-2 md:pt-0">
-            <h2 className="font-script text-xl md:text-8xl mb-6 md:mb-12 text-center">
+            <h2 className="font-script text-xl md:text-8xl mb-6 xs:mb-4 mb:mb-6 md:mb-12 text-center">
               Wedding day timeline
             </h2>
 
@@ -371,7 +372,7 @@ function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-row items-start md:items-center py-3 px-6 md:py-8 border-b border-gray-300"
+                  className="flex flex-row items-start md:items-center py-3 px-6 xs:py-[10px] mb:py-3 md:py-8 border-b border-gray-300"
                 >
                   <span className="w-10 md:w-40 font-sans font-extralight text-[10px] md:text-2xl pt-1 md:pt-0">
                     {item.time}
@@ -416,7 +417,7 @@ function Home() {
               <img
                 src={ladiesIcon}
                 alt="Ladies Icon"
-                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4 brightness-0 invert"
+                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4"
               />
               <h3 className="font-script text-xl md:text-5xl mb-2 md:mb-4">
                 Ladies
@@ -431,7 +432,7 @@ function Home() {
               <img
                 src={gentlemenIcon}
                 alt="Gentlemen Icon"
-                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4 brightness-0 invert"
+                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4"
               />
               <h3 className="font-script text-xl md:text-5xl mb-2 md:mb-4">
                 Gentlemen
@@ -646,17 +647,17 @@ function Home() {
               Meliá Danang Beach Resort
             </p>
             <p className="font-sans text-xs md:text-base mt-2">
-              Address: 19 Trường Sa, Group 39, Ngũ Hành Sơn, Danang, Vietnam
+              Address: 19 Truong Sa, Group 39, Ngu Hanh Son, Danang, Vietnam
             </p>
 
-            <button
+            <Link
+              to="https://www.google.com/maps/place/Meli%C3%A1+Danang+Beach+Resort/@16.0002912,108.2664412,17z/data=!4m9!3m8!1s0x314210c5cab81527:0xfd5b35311bbbd0fc!5m2!4m1!1i2!8m2!3d16.0002912!4d108.2690161!16s%2Fg%2F1q67pwtd0?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-4 bg-white border border-[#F3E9D9] shadow-md rounded-full px-3 py-1 md:px-6 md:py-3 font-sans font-bold uppercase text-xs md:text-sm tracking-wide text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
-              onClick={() => {
-                /* mở map modal / link nếu cần */
-              }}
             >
               See map
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -691,11 +692,11 @@ function Home() {
           <img
             src={coco2Sub}
             alt="Coconut Sub Left"
-            className="absolute bottom-0 left-0 w-20 md:w-[250px] object-contain opacity-70"
+            className="absolute -bottom-5 left-0 w-20 md:w-[250px] object-contain opacity-70"
           />
         </div>
 
-        {/* Cây dừa phải (coco-1 trong code cũ là bên phải theo logic CSS right-0) */}
+        {/* Cây dừa phải */}
         <div className="absolute bottom-0 right-0 z-0 pointer-events-none flex flex-col items-end">
           <img
             src={coco1}
@@ -706,7 +707,7 @@ function Home() {
           <img
             src={coco1Sub}
             alt="Coconut Sub Right"
-            className="absolute bottom-0 right-0 w-20 md:w-[250px] object-contain opacity-70"
+            className="absolute -bottom-5 right-0 w-20 md:w-[250px] object-contain opacity-70"
           />
         </div>
 
@@ -725,11 +726,11 @@ function Home() {
         </div>
 
         {/* Birds Group Right */}
-        <div className="absolute top-20 right-[5%] md:right-[15%] z-0 pointer-events-none">
+        <div className="absolute top-20 right-[5%] md:right-[15%] z-50 pointer-events-none">
           <img
             src={birdRight1}
             alt="bird"
-            className="absolute top-0 right-0 w-5 md:w-10 opacity-60 animate-[float_10s_infinite]"
+            className="top-0 right-0 w-5 md:w-10 opacity-60 animate-[float_10s_infinite]"
           />
           <img
             src={birdRight2}
@@ -762,9 +763,14 @@ function Home() {
           </p>
 
           {/* Button Instruction */}
-          <button className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-1 md:px-8 md:py-3 font-sans font-bold text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-transform duration-300 mb-8">
+          <Link
+            to="https://drive.google.com/file/d/1nCn5NvcGxg4u-oeqVDUlTzgOgtFvWLIt/view?usp=drivesdk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-1 md:px-8 md:py-3 font-sans font-bold text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-transform duration-300 mb-8 inline-block text-center"
+          >
             Instruction
-          </button>
+          </Link>
 
           {/* Block 2: Other Hotels */}
           <h3 className="font-sans font-bold text-base md:text-2xl mb-4">
@@ -782,7 +788,7 @@ function Home() {
             <img
               src={planeDoodle}
               alt="Flying to Danang"
-              className="w-56 md:w-64 object-contain opacity-80"
+              className="w-72 md:w-96 object-contain opacity-80"
             />
           </div>
 
@@ -829,56 +835,101 @@ function Home() {
 
           {/* 2. Layout Rows: 60% Text - 40% Image */}
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-            
             {/* Left Column: Text (60%) */}
             <div className="w-full md:w-[60%] flex flex-col gap-8">
-              
               {/* North */}
               <div>
-                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">North of Vietnam</h3>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">
+                  North of Vietnam
+                </h3>
                 <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
-                  <li><span className="font-bold">Hanoi (2 – 3 days)</span> – The charming northern capital with lakes, Indochine architecture, and a bustling Old Quarter.</li>
-                  <li><span className="font-bold">Ninh Binh (1 – 2 days)</span> – The tranquil landscape of towering limestone peaks, calm rivers, and vibrant rice fields.</li>
-                  <li><span className="font-bold">Halong Bay (1 – 2 days)</span> – UNESCO World Heritage site with limestone karsts; perfect for a scenic cruise.</li>
+                  <li>
+                    <span className="font-bold">Hanoi (2 – 3 days)</span> – The
+                    charming northern capital with lakes, Indochine
+                    architecture, and a bustling Old Quarter.
+                  </li>
+                  <li>
+                    <span className="font-bold">Ninh Binh (1 – 2 days)</span> –
+                    The tranquil landscape of towering limestone peaks, calm
+                    rivers, and vibrant rice fields.
+                  </li>
+                  <li>
+                    <span className="font-bold">Halong Bay (1 – 2 days)</span> –
+                    UNESCO World Heritage site with limestone karsts; perfect
+                    for a scenic cruise.
+                  </li>
                 </ul>
               </div>
 
               {/* Center */}
               <div>
-                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">Center of Vietnam</h3>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">
+                  Center of Vietnam
+                </h3>
                 <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
-                  <li><span className="font-bold">Danang and nearby Hội An (2 - 3 days)</span> – The perfect mix of modern coastal energy and timeless lantern-lit charm, with beautiful beaches, bridges, and ancient streets.</li>
-                  <li><span className="font-bold">Hue (1 – 2 days)</span> – The former imperial capital with historic citadels and royal tombs.</li>
+                  <li>
+                    <span className="font-bold">
+                      Danang and nearby Hoi An (2 - 3 days)
+                    </span>{" "}
+                    – The perfect mix of modern coastal energy and timeless
+                    lantern-lit charm, with beautiful beaches, bridges, and
+                    ancient streets.
+                  </li>
+                  <li>
+                    <span className="font-bold">Hue (1 – 2 days)</span> – The
+                    former imperial capital with historic citadels and royal
+                    tombs.
+                  </li>
                 </ul>
               </div>
 
               {/* South */}
               <div>
-                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">South of Vietnam</h3>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">
+                  South of Vietnam
+                </h3>
                 <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
-                  <li><span className="font-bold">Ho Chi Minh City (2 – 3 days)</span> – Vibrant southern metropolis with lively markets, and rich history.</li>
-                  <li><span className="font-bold">Mekong Delta (1 – 2 days)</span> – Explore rivers, floating markets, and traditional villages in southern Vietnam.</li>
+                  <li>
+                    <span className="font-bold">
+                      Ho Chi Minh City (2 – 3 days)
+                    </span>{" "}
+                    – Vibrant southern metropolis with lively markets, and rich
+                    history.
+                  </li>
+                  <li>
+                    <span className="font-bold">Mekong Delta (1 – 2 days)</span>{" "}
+                    – Explore rivers, floating markets, and traditional villages
+                    in southern Vietnam.
+                  </li>
                 </ul>
               </div>
 
               {/* Cambodia */}
               <div>
-                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">Nearby Country to Explore: Cambodia - The Hometown of The Groom</h3>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">
+                  Nearby Country to Explore: Cambodia - The Hometown of The
+                  Groom
+                </h3>
                 <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
-                  <li><span className="font-bold">Phnom Penh (2 – 3 days)</span> – Gritty, soulful, and raw Cambodia - royal palaces, river sunsets, and deep history.</li>
-                  <li><span className="font-bold">Siem Reap (3 – 4 days)</span> – Ancient wonders by day, laid-back bars by night - Angkor magic never gets old.</li>
+                  <li>
+                    <span className="font-bold">Phnom Penh (2 – 3 days)</span> –
+                    Gritty, soulful, and raw Cambodia - royal palaces, river
+                    sunsets, and deep history.
+                  </li>
+                  <li>
+                    <span className="font-bold">Siem Reap (3 – 4 days)</span> –
+                    Ancient wonders by day, laid-back bars by night - Angkor
+                    magic never gets old.
+                  </li>
                 </ul>
               </div>
-
-              
-
             </div>
 
             {/* Right Column: Image (40%) */}
             <div className="w-full md:w-[40%] flex flex-col justify-center md:justify-end">
-              <img 
-                src={mapAdventure} 
-                alt="Vietnam and Cambodia Map" 
+              <img
+                src={mapAdventure}
+                alt="Vietnam and Cambodia Map"
                 className="w-full h-auto max-w-[500px] md:max-w-[600px] object-contain"
               />
 
@@ -886,7 +937,9 @@ function Home() {
               <div className="mt-4 flex items-start gap-2">
                 <span className="text-yellow-500 text-xl">✨</span>
                 <p className="font-sans font-medium italic text-xs md:text-base">
-                  Whether you choose a cultural tour, a beach escape, or both, Vietnam and Cambodia offers unforgettable experiences before or after our celebration in Danang.
+                  Whether you choose a cultural tour, a beach escape, or both,
+                  Vietnam and Cambodia offers unforgettable experiences before
+                  or after our celebration in Danang.
                 </p>
               </div>
             </div>
@@ -896,18 +949,17 @@ function Home() {
 
       {/* --- FINAL SECTION: SEE YOU SOON --- */}
       <section className="relative w-full h-[50vh] md:h-[100vh] overflow-hidden">
-        <img 
-          src={footerImg} 
-          alt="See you soon" 
+        <img
+          src={footerImg}
+          alt="See you soon"
           className="w-full h-full object-cover"
         />
-        
+
         {/* Lớp phủ tối nhẹ để làm nổi bật chữ (tùy chọn) */}
         <div className="absolute inset-0 bg-black/10"></div>
 
         {/* Text Container */}
-        {/* Bạn có thể điều chỉnh vị trí dọc bằng class top-[50%] hoặc top-[40%]... */}
-        <div className="absolute top-[30%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
+        <div className="absolute top-[36%] xs:top-[28%] mb:top-[32%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
           <h2 className="font-tempting text-wedding-beige text-[32px] md:text-[10rem] leading-none drop-shadow-lg">
             See you soon.
           </h2>
