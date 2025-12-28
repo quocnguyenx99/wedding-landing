@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react"; // Cập nhật import useState
 import heroSrc from "../assets/images/banner-img.jpg";
 
 import sectionInfo1 from "../assets/images/section-info-1.jpg";
@@ -9,7 +9,61 @@ import sectionInfoRow1 from "../assets/images/section-info-row-1.jpg";
 import sectionInfoRow2 from "../assets/images/section-info-row-2.jpg";
 import sectionInfoRow3 from "../assets/images/section-info-row-3.jpg";
 
+import starSrc from "../assets/images/star.png";
+import sectionInfoLocation from "../assets/images/section-location-bg.jpg";
+
+import sectionTimeline from "../assets/images/section-timeline.jpg";
+
+// Import icons cho Dresscode
+import sectionDresscodeBg from "../assets/images/section-dresscode.jpg";
+import ladiesIcon from "../assets/images/Ladies.png";
+import gentlemenIcon from "../assets/images/Gentlemen.png";
+
+import sectionWeddingVenue from "../assets/images/section-weding-venue-1.jpg";
+import sectionWeddingVenue2 from "../assets/images/section-weding-venue-2.jpg";
+
+// Import assets cho section Accommodation 
+import sectionAccommodationBg from "../assets/images/section-weding-venue-3.jpg"; 
+import coco1 from "../assets/images/coco-1.png"; 
+import coco2 from "../assets/images/coco-2.png"; 
+// import bird from "../assets/images/bird.png"; 
+import planeDoodle from "../assets/images/plane.png"; 
+
 function Home() {
+  // --- STATE CHO RSVP FORM ---
+  const [mainName, setMainName] = useState("");
+  const [mainDietary, setMainDietary] = useState("");
+
+  // State quản lý danh sách khách đi cùng
+  const [guests, setGuests] = useState([]);
+  const [isGuestSectionOpen, setIsGuestSectionOpen] = useState(false);
+
+  // State popup
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  // Xử lý thêm khách (Max 5)
+  const handleAddGuest = () => {
+    if (guests.length < 5) {
+      setGuests([...guests, { id: Date.now(), name: "", dietary: "" }]);
+    }
+  };
+
+  // Xử lý xóa khách
+  const handleRemoveGuest = (id) => {
+    setGuests(guests.filter((g) => g.id !== id));
+  };
+
+  // Xử lý thay đổi thông tin khách
+  const handleGuestChange = (id, field, value) => {
+    setGuests(guests.map((g) => (g.id === id ? { ...g, [field]: value } : g)));
+  };
+
+  // Xử lý submit
+  const handleSubmit = () => {
+    // Ở đây bạn có thể thêm logic gửi API
+    setShowSuccessPopup(true);
+  };
+
   const particles = useMemo(() => {
     return Array.from({ length: 65 }).map((_, i) => ({
       id: i,
@@ -29,6 +83,39 @@ function Home() {
             0% { transform: translate(0, 0); opacity: 0.2; }
             50% { transform: translate(20px, -20px); opacity: 0.8; }
             100% { transform: translate(0, 0); opacity: 0.2; }
+          }
+
+          /* New: smooth popup + backdrop animations */
+          @keyframes backdropFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+
+          @keyframes popupIn {
+            0% { opacity: 0; transform: translateY(12px) scale(0.98); filter: blur(2px); }
+            60% { opacity: 1; transform: translateY(-6px) scale(1.02); filter: blur(0); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+          }
+
+          .popup-backdrop {
+            animation: backdropFade 420ms ease both;
+          }
+
+          .popup-box {
+            animation: popupIn 700ms cubic-bezier(.2,.9,.3,1) 120ms both;
+            box-shadow: 0 18px 45px rgba(44,44,44,0.12); /* softer, elegant shadow */
+            will-change: transform, opacity;
+          }
+
+          /* new: lightweight font helpers (fallbacks) */
+          .font-tempting {
+            font-family: "Tempting", "Great Vibes", "cursive";
+            letter-spacing: 0.5px;
+          }
+          .font-acid {
+            font-family: "Acid 200", "Playfair Display", serif;
+            font-weight: 200;
+            letter-spacing: 0.2px;
           }
         `}
       </style>
@@ -133,7 +220,7 @@ function Home() {
         {/* Đè lên hình giữa (z-20) */}
         <div className="absolute bottom-16 left-2 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-20 md:left-10 md:h-[450px] md:w-[320px]">
           <img
-            src={sectionInfo1} // Thay bằng hình trái
+            src={sectionInfo1}
             alt="Left Moment"
             className="h-full w-full object-cover grayscale"
           />
@@ -143,20 +230,20 @@ function Home() {
         {/* Đè lên hình giữa (z-20) */}
         <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-10 md:right-10 md:h-[350px] md:w-[480px]">
           <img
-            src={sectionInfo2} // Thay bằng hình phải
+            src={sectionInfo2}
             alt="Right Moment"
             className="h-full w-full object-cover grayscale"
           />
         </div>
       </section>
 
-      {/* --- THREE IMAGES SECTION --- */}
-      <section className="relative  z-30 w-full bg-wedding-beige mt-2 px-0 pb-20 md:px-10 md:pb-32">
+      {/* --- THREE IMAGES SECTION AND WEDDING INFO--- */}
+      <section className="relative  z-30 w-full bg-wedding-beige mt-2 px-0 md:px-10 md:pb-32">
         <div className="grid grid-cols-3 gap-1 md:gap-4 max-w-7xl mx-auto h-[200px] md:h-[600px]">
           {/* Image 1 */}
           <div className="relative w-full h-full overflow-hidden">
             <img
-              src={sectionInfoRow1} // Replace with your first image
+              src={sectionInfoRow1}
               alt="Couple Moment 1"
               className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -165,7 +252,7 @@ function Home() {
           {/* Image 2 */}
           <div className="relative w-full h-full overflow-hidden">
             <img
-              src={sectionInfoRow2} // Replace with your second image
+              src={sectionInfoRow2}
               alt="Couple Moment 2"
               className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -174,11 +261,505 @@ function Home() {
           {/* Image 3 */}
           <div className="relative w-full h-full overflow-hidden">
             <img
-              src={sectionInfoRow3} // Replace with your third image
+              src={sectionInfoRow3}
               alt="Couple Moment 3"
               className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>
+        </div>
+
+        {/* --- INFO DIV: LOCATION & DATE --- */}
+        <div className="relative w-full mt-2 h-[200px] md:h-[500px] overflow-hidden flex items-center justify-center">
+          {/* 1. Background Image */}
+          <img
+            src={sectionInfoLocation}
+            alt="Background Pattern"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+
+          {/* 2. Beige Overlay (Adjust opacity to see image) */}
+          <div className="absolute inset-0 bg-[#F3E9D9]/85" />
+
+          {/* 3. Content Info */}
+          <div className="relative z-10 flex flex-col items-center w-full max-w-5xl px-4">
+            <div className="flex flex-row items-center justify-center w-full">
+              {/* Column 1: Location (Align Right) */}
+              <div className="flex-1 flex flex-col items-end text-right pr-6 md:pr-12 space-y-2">
+                <h3 className="font-script text-sm md:text-5xl">Location</h3>
+                <p className="font-sans font-extralight text-xl md:text-4xl leading-tight">
+                  Meliá Danang
+                  <br />
+                  Beach Resort,
+                  <br />
+                  Vietnam
+                </p>
+              </div>
+
+              {/* Divider: 2px solid charcoal (lighter) */}
+              <div className="h-24 md:h-48 w-[1px] bg-wedding-charcoal/40"></div>
+
+              {/* Column 2: Date (Align Left) */}
+              <div className="flex-1 flex flex-col items-start text-left pl-6 md:pl-12 space-y-2">
+                <h3 className="font-script text-sm md:text-5xl">Date</h3>
+                <p className="font-sans font-extralight text-xl md:text-4xl leading-tight">
+                  Saturday,
+                  <br />
+                  August 8th,
+                  <br />
+                  2026
+                </p>
+              </div>
+            </div>
+
+            {/* 5 Stars */}
+            <div className="flex flex-row gap-3 mt-4 md:mt-16">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <img
+                  key={star}
+                  src={starSrc}
+                  alt="star"
+                  className="h-3 w-3 md:h-7 md:w-7"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- WEDDING DAY TIMELINE SECTION --- */}
+      <section className="w-full bg-white pt-8 pb-3 px-3 md:py-32 md:px-10">
+        {/* flex-row để giữ bố cục ngang trên mọi màn hình */}
+        <div className="max-w-7xl mx-auto flex flex-row items-start md:gap-20">
+          {/* 1. Left Column: Image (40%) */}
+          <div className="w-[40%] h-[280px] md:h-[750px]">
+            <div className="w-full h-full rounded-t-full bg-wedding-beige p-[2px] md:p-3 overflow-hidden">
+              <img
+                src={sectionTimeline}
+                alt="Timeline Couple"
+                className="w-full h-full object-cover rounded-t-full blur-[0.5px] md:blur-[2px]"
+              />
+            </div>
+          </div>
+
+          {/* 2. Right Column: Timeline (60%) */}
+          <div className="w-[60%] flex flex-col pt-2 md:pt-0">
+            <h2 className="font-script text-xl md:text-8xl mb-6 md:mb-12 text-center">
+              Wedding day timeline
+            </h2>
+
+            {/* Timeline List */}
+            <div className="flex flex-col w-full border-t border-gray-300">
+              {[
+                { time: "14:30", event: "Guest Arrival & Welcome" },
+                { time: "15:00", event: "Vow Ceremony" },
+                { time: "16:00", event: "Cocktail Hour" },
+                { time: "18:00", event: "Dinner Reception" },
+                { time: "20:00", event: "First Dance & Celebration" },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-start md:items-center py-3 px-6 md:py-8 border-b border-gray-300"
+                >
+                  <span className="w-10 md:w-40 font-sans font-extralight text-[10px] md:text-2xl pt-1 md:pt-0">
+                    {item.time}
+                  </span>
+                  <span className="flex-1 font-sans font-extralight text-[10px] md:text-2xl pl-2 md:pl-0">
+                    {item.event}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- DRESSCODE SECTION --- */}
+      <section className="relative w-full h-[380px] md:h-[400px] overflow-hidden">
+        {/* 1. Background Image (Centered & Overlay) */}
+        <img
+          src={sectionDresscodeBg}
+          alt="Dresscode Background"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        {/* Overlay tối màu để nổi bật text trắng */}
+        <div className="absolute inset-0 bg-black/70" />
+
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-wedding-beige">
+          {/* 1. Header Section */}
+          <div className="flex flex-col items-center text-center mb-8 md:mb-16">
+            <h2 className="font-script text-2xl md:text-8xl mb-2">Dresscode</h2>
+            <p className="font-sans font-extralight text-xs md:text-xl tracking-wide opacity-90">
+              Festive summer glam, chic & elegant
+            </p>
+            {/* Line separator */}
+            <div className="w-16 md:w-24 h-[1px] bg-wedding-beige mt-4 md:mt-6"></div>
+          </div>
+
+          {/* 2. Columns: Ladies & Gentlemen */}
+          <div className="flex flex-row justify-center items-start w-full max-w-5xl gap-4 md:gap-20 mb-6 md:mb-20">
+            {/* Ladies Column */}
+            <div className="flex-1 flex flex-col items-center text-center">
+              <img
+                src={ladiesIcon}
+                alt="Ladies Icon"
+                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4 brightness-0 invert"
+              />
+              <h3 className="font-script text-xl md:text-5xl mb-2 md:mb-4">
+                Ladies
+              </h3>
+              <p className="font-sans font-extralight text-[8px] md:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
+                Long dresses or gowns are preferred
+              </p>
+            </div>
+
+            {/* Gentlemen Column */}
+            <div className="flex-1 flex flex-col items-center text-center">
+              <img
+                src={gentlemenIcon}
+                alt="Gentlemen Icon"
+                className="w-6 h-6 md:w-16 md:h-16 object-contain mb-4 brightness-0 invert"
+              />
+              <h3 className="font-script text-xl md:text-5xl mb-2 md:mb-4">
+                Gentlemen
+              </h3>
+              <p className="font-sans font-extralight text-[8px] md:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
+                Suits, dress shirts with trousers, or smart-casual ensembles
+              </p>
+            </div>
+          </div>
+
+          {/* 3. Color Palette */}
+          <div className="flex flex-row gap-4 md:gap-8">
+            {[
+              { color: "#c0d1ad", name: "Pistachio\nGreen" },
+              { color: "#f2e7b1", name: "Buttery\nYellow" },
+              { color: "#b5dceb", name: "Blue\nPastel" },
+              { color: "#f0e1ce", name: "Light\nBeige" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center gap-1 md:gap-2"
+              >
+                <div
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 shadow-lg"
+                  style={{ backgroundColor: item.color }}
+                ></div>
+                <span className="font-sans font-extralight text-[8px] md:text-xs text-center whitespace-pre-line opacity-80">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- RSVP / JOIN US SECTION --- */}
+      <section className="relative w-full bg-white py-10 px-4 md:py-32">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
+          {/* Title: Join us (Đè lên form một chút bằng negative margin) */}
+          <h2 className="relative z-10 font-script text-4xl md:text-8xl -mb-2 md:-mb-14">
+            Join us
+          </h2>
+
+          {/* Form Container */}
+          <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-16 pb-10 px-6 md:px-12 md:pt-20 shadow-sm flex flex-col gap-4">
+            {/* 1. Your Full Name */}
+            <input
+              type="text"
+              placeholder="Your full name"
+              value={mainName}
+              onChange={(e) => setMainName(e.target.value)}
+              className="w-full h-12 md:h-14 rounded-full px-6 text-center font-sans font-light text-sm md:text-lg outline-none text-wedding-charcoal placeholder:text-wedding-charcoal"
+            />
+
+            {/* 2. Who are you coming with? (Toggle Button) */}
+            <div className="w-full flex flex-col gap-2">
+              <button
+                onClick={() => setIsGuestSectionOpen(!isGuestSectionOpen)}
+                className="w-full h-12 md:h-14 bg-white rounded-full px-6 flex items-center justify-between font-sans font-light text-sm md:text-lg text-[#4a4a4a] outline-none"
+              >
+                <span className="w-full text-center text-wedding-charcoal">
+                  Who are you coming with?{" "}
+                  {guests.length > 0 && `(${guests.length})`}
+                </span>
+                <span className="text-2xl font-light text-wedding-charcoal absolute right-12 md:right-20">
+                  {isGuestSectionOpen ? "-" : "+"}
+                </span>
+              </button>
+
+              {/* Guest List Area (Expandable) */}
+              {isGuestSectionOpen && (
+                <div className="flex flex-col gap-4 mt-2 p-4 bg-white/50 rounded-2xl border border-white">
+                  <p className="text-center font-sans text-xs text-wedding-charcoal mb-2 opacity-60">
+                    (Max 5 guests)
+                  </p>
+
+                  {guests.map((guest, index) => (
+                    <div
+                      key={guest.id}
+                      className="flex flex-col gap-2 border-b border-[#dcd0c0] pb-4 last:border-0 animate-[fadeIn_0.3s_ease-out]"
+                    >
+                      <div className="flex justify-between items-end">
+                        <p className="font-sans text-xs font-bold text-wedding-charcoal uppercase tracking-wider">
+                          Guest {index + 1}
+                        </p>
+
+                        {/* Nút Remove được làm đẹp lại */}
+                        <button
+                          onClick={() => handleRemoveGuest(guest.id)}
+                          className="text-[10px] font-sans uppercase tracking-widest text-[#8b786d] hover:text-[#2c2c2c] border-b border-transparent hover:border-[#2c2c2c] transition-all duration-300 pb-[1px]"
+                        >
+                          Remove
+                        </button>
+                      </div>
+
+                      {/* Guest Name */}
+                      <input
+                        type="text"
+                        placeholder={`Full name`}
+                        value={guest.name}
+                        onChange={(e) =>
+                          handleGuestChange(guest.id, "name", e.target.value)
+                        }
+                        className="w-full h-10 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
+                      />
+
+                      {/* Guest Dietary */}
+                      <input
+                        type="text"
+                        placeholder="Dietary (optional)"
+                        value={guest.dietary}
+                        onChange={(e) =>
+                          handleGuestChange(guest.id, "dietary", e.target.value)
+                        }
+                        className="w-full h-10 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
+                      />
+                    </div>
+                  ))}
+
+                  {/* Nút Add Guest được làm đẹp lại */}
+                  {guests.length < 5 && (
+                    <button
+                      onClick={handleAddGuest}
+                      className="self-center mt-2 group flex items-center gap-2 px-5 py-2 rounded-full border border-[#dcd0c0] bg-white/60 hover:bg-white hover:shadow-sm transition-all duration-300"
+                    >
+                      <span className="w-5 h-5 md:w-6 md:h-6 inline-flex items-center justify-center rounded-full bg-[#dcd0c0] text-white text-[12px] md:text-sm leading-none select-none group-hover:bg-[#8b786d] transition-colors">
+                        +
+                      </span>
+                      <span className="font-sans text-xs text-[#5e5048] tracking-wide group-hover:text-[#2c2c2c]">
+                        Add another guest
+                      </span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* 3. Dietary Requirements (Textarea) */}
+            <div className="w-full">
+              <textarea
+                placeholder="Do you have any special dietary requirements?&#10;(e.g. Vegeterian, No seafood,...)"
+                value={mainDietary}
+                onChange={(e) => setMainDietary(e.target.value)}
+                className="w-full h-32 md:h-40 rounded-[20px] py-4 px-6 text-center font-sans font-light text-sm md:text-lg outline-none text-wedding-charcoal placeholder:text-wedding-charcoal resize-none leading-relaxed"
+              />
+            </div>
+
+            {/* 4. Adult Note */}
+            <p className="font-sans italic font-light text-[10px] md:text-sm text-center text-wedding-charcoal mt-2">
+              *Adult celebration — we respectfully ask that guests be 15 years
+              old and over.
+            </p>
+
+            {/* 5. Submit Button */}
+            <div className="flex justify-center mt-6 -mb-16 md:-mb-20 relative z-20">
+              <button
+                onClick={handleSubmit}
+                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
+              >
+                Confirm the registration
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SUCCESS POPUP --- */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm popup-backdrop"
+            onClick={() => setShowSuccessPopup(false)}
+          ></div>
+
+          {/* Popup Content */}
+          <div className="relative bg-[#F3E9D9] p-8 md:p-12 rounded-2xl popup-box max-w-md w-full text-center">
+            <h3 className="font-script text-xl md:text-4xl mb-4">
+              Thank you for your registration
+            </h3>
+            <p className="font-sans font-light text-base md:text-2xl leading-relaxed">
+              We are looking forward to welcoming you in our wedding.
+            </p>
+
+            {/* Close Button (Optional) */}
+            <button
+              onClick={() => setShowSuccessPopup(false)}
+              className="mt-8 bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm tracking-widest hover:scale-105 transition-transform duration-300 uppercase"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- WEDDING VENUE SECTION --- */}
+      <section className="w-full bg-white">
+        <div className="relative w-full h-[220px] md:h-[300px] overflow-hidden">
+          {/* faint map background */}
+          <img
+            src={sectionWeddingVenue}
+            alt="Map background"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+
+          {/* beige overlay + content */}
+          <div className="absolute inset-0 bg-[#F3E9D9]/95 flex flex-col items-center justify-center text-center px-6">
+            <h3 className="font-tempting text-2xl md:text-4xl">
+              Wedding venue
+            </h3>
+            <p className="font-sans text-base md:text-xl mt-2">
+              Meliá Danang Beach Resort
+            </p>
+            <p className="font-sans text-xs md:text-base mt-2">
+              Address: 19 Trường Sa, Group 39, Ngũ Hành Sơn, Danang, Vietnam
+            </p>
+
+            <button
+              className="mt-4 bg-white border border-[#F3E9D9] shadow-md rounded-full px-3 py-1 md:px-6 md:py-3 font-sans font-bold uppercase text-xs md:text-sm tracking-wide text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
+              onClick={() => {/* mở map modal / link nếu cần */}}
+            >
+              See map
+            </button>
+          </div>
+        </div>
+
+        {/* image below */}
+        <div className="w-full">
+          <img
+            src={sectionWeddingVenue2}
+            alt="Meliá Danang Beach Resort"
+            className="w-full h-[360px] md:h-[480px] object-cover"
+          />
+        </div>
+      </section>
+
+      {/* --- ACCOMMODATION SECTION --- */}
+      <section className="relative w-full py-8 md:py-32 overflow-hidden">
+        {/* 1. Background Image & Beige Overlay */}
+        <img
+          src={sectionAccommodationBg}
+          alt="Accommodation Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F3E9D9]/90" />
+
+        
+        {/* Cây dừa trái */}
+        <img
+          src={coco2}
+          alt="Coconut Tree Left"
+          className="absolute bottom-0 left-0 w-32 md:w-[400px] object-contain opacity-80 z-0 pointer-events-none"
+        />
+        {/* Cây dừa phải */}
+        <img
+          src={coco1}
+          alt="Coconut Tree Right"
+          className="absolute bottom-0 right-0 w-32 md:w-[400px] object-contain opacity-80 z-0 pointer-events-none"
+        />
+        {/* Con cò (Birds) */}
+        {/* <img
+          src={bird}
+          alt="bird"
+          className="absolute top-10 left-[10%] w-8 md:w-16 opacity-60 animate-[float_8s_infinite]"
+        />
+        <img
+          src={bird}
+          alt="bird"
+          className="absolute top-24 right-[20%] w-6 md:w-12 opacity-60 animate-[float_10s_infinite_1s]"
+        />
+        <img
+          src={bird}
+          alt="bird"
+          className="absolute top-40 left-[25%] w-4 md:w-8 opacity-50 animate-[float_12s_infinite_2s]"
+        /> */}
+
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto text-[#2c2c2c]">
+          {/* Title */}
+          <h2 className="font-tempting text-2xl md:text-4xl mb-4 md:mb-12">
+            Accommodation
+          </h2>
+
+          {/* Block 1: Melia Resort */}
+          <h3 className="font-sans font-bold text-base md:text-2xl mb-4">
+            Booking at Melia Danang Beach Resort
+          </h3>
+          <p className="font-sans font-light text-xs md:text-sm leading-relaxed max-w-4xl mb-6">
+            We have negotiated a special night rate if you wish to stay at the Melia Resort! When submitting your booking,
+            <br className="hidden md:block" />
+            please follow the instructions to receive the special wedding rate.
+          </p>
+
+          {/* Button Instruction */}
+          <button className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-1 md:px-8 md:py-3 font-sans font-bold text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-transform duration-300 mb-8">
+            Instruction
+          </button>
+
+          {/* Block 2: Other Hotels */}
+          <h3 className="font-sans font-bold text-base md:text-2xl mb-4">
+            Book your stay at other hotels / resorts
+          </h3>
+          <p className="font-sans font-light text-xs md:text-sm leading-relaxed max-w-3xl mb-8">
+            You can also book at other hotels nearby,
+            <br className="hidden md:block" />
+            Danang is a small city and Melia Resort is easily accessible from any location!
+          </p>
+
+          {/* Plane Image */}
+          <div className="w-full flex justify-center mb-4">
+            <img
+              src={planeDoodle}
+              alt="Flying to Danang"
+              className="w-56 md:w-64 object-contain opacity-80"
+            />
+          </div>
+
+          {/* Block 3: Flying Info */}
+          <h2 className="font-sans font-light text-3xl md:text-6xl mb-6">
+            Flying to Danang (DAD)
+          </h2>
+
+          <h3 className="font-sans font-bold text-base md:text-xl mb-4">
+            Danang is easily reachable from around the world. You may:
+          </h3>
+
+          <ul className="font-sans font-light text-xs md:text-lg text-left list-disc pl-5 md:pl-0 space-y-2 max-w-3xl mx-auto mb-10 marker:text-[#8b786d]">
+            <li>Take a direct or connecting flight via hubs such as Doha, Singapore, Dubai, Bangkok, or Seoul.</li>
+            <li>
+              Combine your trip with a short tour of Vietnam, visiting Hanoi or Ho Chi Minh City
+              <br className="hidden md:block" />
+              (many more international direct flights) before flying to Danang with Vietnam Airlines.
+            </li>
+          </ul>
+
+          {/* Footer Note */}
+          <p className="font-sans font-light text-sm md:text-xl leading-relaxed max-w-4xl">
+            From the airport, Meliá Danang Beach Resort <span className="font-bold">is just 15 minutes away by taxi</span>,
+            <br className="hidden md:block" />
+            ready to welcome you for our celebration.
+          </p>
         </div>
       </section>
     </>
@@ -186,3 +767,4 @@ function Home() {
 }
 
 export default Home;
+
