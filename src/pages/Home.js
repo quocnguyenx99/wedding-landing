@@ -22,12 +22,25 @@ import gentlemenIcon from "../assets/images/Gentlemen.png";
 import sectionWeddingVenue from "../assets/images/section-weding-venue-1.jpg";
 import sectionWeddingVenue2 from "../assets/images/section-weding-venue-2.jpg";
 
-// Import assets cho section Accommodation 
-import sectionAccommodationBg from "../assets/images/section-weding-venue-3.jpg"; 
-import coco1 from "../assets/images/coco-1.png"; 
-import coco2 from "../assets/images/coco-2.png"; 
-// import bird from "../assets/images/bird.png"; 
-import planeDoodle from "../assets/images/plane.png"; 
+// Import assets cho section Accommodation
+import sectionAccommodationBg from "../assets/images/section-weding-venue-3.jpg";
+import coco1 from "../assets/images/coco-1.png";
+import coco2 from "../assets/images/coco-2.png";
+import planeDoodle from "../assets/images/plane.png";
+
+import coco1Sub from "../assets/images/coco-1-sub.png";
+import coco2Sub from "../assets/images/coco-2-sub.png";
+import birdLeft1 from "../assets/images/bird1/bird-left-1.png";
+import birdLeft2 from "../assets/images/bird1/bird-left-2.png";
+import birdRight1 from "../assets/images/bird2/bird-right-1.png";
+import birdRight2 from "../assets/images/bird2/bird-right-2.png";
+import birdRight3 from "../assets/images/bird2/bird-right-3.png";
+
+// Import hình bản đồ 
+import mapAdventure from "../assets/images/section-after-wedding-map.jpg"; 
+
+// Import hình ảnh cho section cuối (Hãy đảm bảo file này tồn tại hoặc đổi tên)
+import footerImg from "../assets/images/section-end.jpg";
 
 function Home() {
   // --- STATE CHO RSVP FORM ---
@@ -638,7 +651,9 @@ function Home() {
 
             <button
               className="mt-4 bg-white border border-[#F3E9D9] shadow-md rounded-full px-3 py-1 md:px-6 md:py-3 font-sans font-bold uppercase text-xs md:text-sm tracking-wide text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
-              onClick={() => {/* mở map modal / link nếu cần */}}
+              onClick={() => {
+                /* mở map modal / link nếu cần */
+              }}
             >
               See map
             </button>
@@ -665,35 +680,68 @@ function Home() {
         />
         <div className="absolute inset-0 bg-[#F3E9D9]/90" />
 
-        
         {/* Cây dừa trái */}
-        <img
-          src={coco2}
-          alt="Coconut Tree Left"
-          className="absolute bottom-0 left-0 w-32 md:w-[400px] object-contain opacity-80 z-0 pointer-events-none"
-        />
-        {/* Cây dừa phải */}
-        <img
-          src={coco1}
-          alt="Coconut Tree Right"
-          className="absolute bottom-0 right-0 w-32 md:w-[400px] object-contain opacity-80 z-0 pointer-events-none"
-        />
-        {/* Con cò (Birds) */}
-        {/* <img
-          src={bird}
-          alt="bird"
-          className="absolute top-10 left-[10%] w-8 md:w-16 opacity-60 animate-[float_8s_infinite]"
-        />
-        <img
-          src={bird}
-          alt="bird"
-          className="absolute top-24 right-[20%] w-6 md:w-12 opacity-60 animate-[float_10s_infinite_1s]"
-        />
-        <img
-          src={bird}
-          alt="bird"
-          className="absolute top-40 left-[25%] w-4 md:w-8 opacity-50 animate-[float_12s_infinite_2s]"
-        /> */}
+        <div className="absolute bottom-0 left-0 z-0 pointer-events-none">
+          <img
+            src={coco2}
+            alt="Coconut Tree Left"
+            className="w-32 md:w-[400px] object-contain opacity-80"
+          />
+          {/* Sub image dưới gốc dừa trái */}
+          <img
+            src={coco2Sub}
+            alt="Coconut Sub Left"
+            className="absolute bottom-0 left-0 w-20 md:w-[250px] object-contain opacity-70"
+          />
+        </div>
+
+        {/* Cây dừa phải (coco-1 trong code cũ là bên phải theo logic CSS right-0) */}
+        <div className="absolute bottom-0 right-0 z-0 pointer-events-none flex flex-col items-end">
+          <img
+            src={coco1}
+            alt="Coconut Tree Right"
+            className="w-32 md:w-[400px] object-contain opacity-80"
+          />
+          {/* Sub image dưới gốc dừa phải */}
+          <img
+            src={coco1Sub}
+            alt="Coconut Sub Right"
+            className="absolute bottom-0 right-0 w-20 md:w-[250px] object-contain opacity-70"
+          />
+        </div>
+
+        {/* Birds Group Left */}
+        <div className="absolute top-10 left-[5%] md:left-[10%] z-0 pointer-events-none">
+          <img
+            src={birdLeft1}
+            alt="bird"
+            className="w-4 md:w-8 opacity-60 animate-[float_8s_infinite]"
+          />
+          <img
+            src={birdLeft2}
+            alt="bird"
+            className="absolute top-4 left-6 w-3 md:w-6 opacity-50 animate-[float_9s_infinite_1s]"
+          />
+        </div>
+
+        {/* Birds Group Right */}
+        <div className="absolute top-20 right-[5%] md:right-[15%] z-0 pointer-events-none">
+          <img
+            src={birdRight1}
+            alt="bird"
+            className="absolute top-0 right-0 w-5 md:w-10 opacity-60 animate-[float_10s_infinite]"
+          />
+          <img
+            src={birdRight2}
+            alt="bird"
+            className="absolute top-6 right-8 w-3 md:w-6 opacity-50 animate-[float_11s_infinite_0.5s]"
+          />
+          <img
+            src={birdRight3}
+            alt="bird"
+            className="absolute top-2 right-16 w-2 md:w-5 opacity-40 animate-[float_12s_infinite_1.5s]"
+          />
+        </div>
 
         {/* Content Container */}
         <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto text-[#2c2c2c]">
@@ -707,7 +755,8 @@ function Home() {
             Booking at Melia Danang Beach Resort
           </h3>
           <p className="font-sans font-light text-xs md:text-sm leading-relaxed max-w-4xl mb-6">
-            We have negotiated a special night rate if you wish to stay at the Melia Resort! When submitting your booking,
+            We have negotiated a special night rate if you wish to stay at the
+            Melia Resort! When submitting your booking,
             <br className="hidden md:block" />
             please follow the instructions to receive the special wedding rate.
           </p>
@@ -724,7 +773,8 @@ function Home() {
           <p className="font-sans font-light text-xs md:text-sm leading-relaxed max-w-3xl mb-8">
             You can also book at other hotels nearby,
             <br className="hidden md:block" />
-            Danang is a small city and Melia Resort is easily accessible from any location!
+            Danang is a small city and Melia Resort is easily accessible from
+            any location!
           </p>
 
           {/* Plane Image */}
@@ -746,20 +796,121 @@ function Home() {
           </h3>
 
           <ul className="font-sans font-light text-xs md:text-lg text-left list-disc pl-5 md:pl-0 space-y-2 max-w-3xl mx-auto mb-10 marker:text-[#8b786d]">
-            <li>Take a direct or connecting flight via hubs such as Doha, Singapore, Dubai, Bangkok, or Seoul.</li>
             <li>
-              Combine your trip with a short tour of Vietnam, visiting Hanoi or Ho Chi Minh City
+              Take a direct or connecting flight via hubs such as Doha,
+              Singapore, Dubai, Bangkok, or Seoul.
+            </li>
+            <li>
+              Combine your trip with a short tour of Vietnam, visiting Hanoi or
+              Ho Chi Minh City
               <br className="hidden md:block" />
-              (many more international direct flights) before flying to Danang with Vietnam Airlines.
+              (many more international direct flights) before flying to Danang
+              with Vietnam Airlines.
             </li>
           </ul>
 
           {/* Footer Note */}
           <p className="font-sans font-light text-sm md:text-xl leading-relaxed max-w-4xl">
-            From the airport, Meliá Danang Beach Resort <span className="font-bold">is just 15 minutes away by taxi</span>,
+            From the airport, Meliá Danang Beach Resort{" "}
+            <span className="font-bold">is just 15 minutes away by taxi</span>,
             <br className="hidden md:block" />
             ready to welcome you for our celebration.
           </p>
+        </div>
+      </section>
+
+      {/* --- ADVENTURE SECTION --- */}
+      <section className="w-full bg-white py-16 px-4 md:px-10 md:pb-32">
+        <div className="max-w-7xl mx-auto">
+          {/* 1. Title: Acid 200 */}
+          <h2 className="font-sans text-3xl md:text-6xl text-center mb-12">
+            Adventure Before or After the Wedding
+          </h2>
+
+          {/* 2. Layout Rows: 60% Text - 40% Image */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+            
+            {/* Left Column: Text (60%) */}
+            <div className="w-full md:w-[60%] flex flex-col gap-8">
+              
+              {/* North */}
+              <div>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">North of Vietnam</h3>
+                <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                  <li><span className="font-bold">Hanoi (2 – 3 days)</span> – The charming northern capital with lakes, Indochine architecture, and a bustling Old Quarter.</li>
+                  <li><span className="font-bold">Ninh Binh (1 – 2 days)</span> – The tranquil landscape of towering limestone peaks, calm rivers, and vibrant rice fields.</li>
+                  <li><span className="font-bold">Halong Bay (1 – 2 days)</span> – UNESCO World Heritage site with limestone karsts; perfect for a scenic cruise.</li>
+                </ul>
+              </div>
+
+              {/* Center */}
+              <div>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">Center of Vietnam</h3>
+                <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                  <li><span className="font-bold">Danang and nearby Hội An (2 - 3 days)</span> – The perfect mix of modern coastal energy and timeless lantern-lit charm, with beautiful beaches, bridges, and ancient streets.</li>
+                  <li><span className="font-bold">Hue (1 – 2 days)</span> – The former imperial capital with historic citadels and royal tombs.</li>
+                </ul>
+              </div>
+
+              {/* South */}
+              <div>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">South of Vietnam</h3>
+                <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                  <li><span className="font-bold">Ho Chi Minh City (2 – 3 days)</span> – Vibrant southern metropolis with lively markets, and rich history.</li>
+                  <li><span className="font-bold">Mekong Delta (1 – 2 days)</span> – Explore rivers, floating markets, and traditional villages in southern Vietnam.</li>
+                </ul>
+              </div>
+
+              {/* Cambodia */}
+              <div>
+                <h3 className="font-sans !font-bold text-base md:text-xl mb-2">Nearby Country to Explore: Cambodia - The Hometown of The Groom</h3>
+                <ul className="font-sans text-xs md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                  <li><span className="font-bold">Phnom Penh (2 – 3 days)</span> – Gritty, soulful, and raw Cambodia - royal palaces, river sunsets, and deep history.</li>
+                  <li><span className="font-bold">Siem Reap (3 – 4 days)</span> – Ancient wonders by day, laid-back bars by night - Angkor magic never gets old.</li>
+                </ul>
+              </div>
+
+              
+
+            </div>
+
+            {/* Right Column: Image (40%) */}
+            <div className="w-full md:w-[40%] flex flex-col justify-center md:justify-end">
+              <img 
+                src={mapAdventure} 
+                alt="Vietnam and Cambodia Map" 
+                className="w-full h-auto max-w-[500px] md:max-w-[600px] object-contain"
+              />
+
+              {/* Footer Note with Sparkle */}
+              <div className="mt-4 flex items-start gap-2">
+                <span className="text-yellow-500 text-xl">✨</span>
+                <p className="font-sans font-medium italic text-xs md:text-base">
+                  Whether you choose a cultural tour, a beach escape, or both, Vietnam and Cambodia offers unforgettable experiences before or after our celebration in Danang.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FINAL SECTION: SEE YOU SOON --- */}
+      <section className="relative w-full h-[50vh] md:h-[100vh] overflow-hidden">
+        <img 
+          src={footerImg} 
+          alt="See you soon" 
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Lớp phủ tối nhẹ để làm nổi bật chữ (tùy chọn) */}
+        <div className="absolute inset-0 bg-black/10"></div>
+
+        {/* Text Container */}
+        {/* Bạn có thể điều chỉnh vị trí dọc bằng class top-[50%] hoặc top-[40%]... */}
+        <div className="absolute top-[30%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
+          <h2 className="font-tempting text-wedding-beige text-[32px] md:text-[10rem] leading-none drop-shadow-lg">
+            See you soon.
+          </h2>
         </div>
       </section>
     </>
@@ -767,4 +918,3 @@ function Home() {
 }
 
 export default Home;
-
