@@ -135,7 +135,7 @@ function Home() {
       </style>
 
       {/* HERO */}
-      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] lg:min-h-[1400px] w-full overflow-hidden">
+      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] lg:min-h-[1400px] xl:min-h-[1650px] w-full overflow-hidden">
         {/* Banner image */}
         <img
           src={heroSrc}
@@ -147,7 +147,7 @@ function Home() {
         <div className="absolute inset-0 z-10 bg-black/70" />
 
         {/* --- HIỆU ỨNG ĐỐM SÁNG (Đặt sau Overlay, trước Content) --- */}
-        <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-[15] pointer-events-none overflow-hidden">
           {particles.map((p) => (
             <div
               key={p.id}
@@ -165,23 +165,23 @@ function Home() {
         </div>
 
         {/* Center content */}
-        <div className="absolute inset-0 z-20 flex justify-center px-4 mt-36 lg:mt-64">
+        <div className="absolute inset-x-0 bottom-[65%] md:bottom-[72%] z-20 flex justify-center px-4">
           <div className="relative top-0 md:top-20 flex flex-row text-wedding-white">
-            <div className="font-script text-wedding-beige text-[4rem] leading-[0.6] md:text-[7rem] lg:text-[8rem] -mr-2  pb-4">
+            <div className="font-script text-wedding-beige text-[4rem] leading-[0.6] md:text-[7rem] lg:text-[8rem] xl:text-[9rem] -mr-2  pb-4 ">
               S
             </div>
 
             {/* Right side content */}
             <div className="flex flex-col items-start md:items-center">
-              <p className="font-sans text-wedding-beige font-light text-[10px] md:text-[16px] lg:text-[18px] mb-1 lg:mb-3 ml-6 md:ml-8 whitespace-nowrap">
+              <p className="font-sans text-wedding-beige font-light text-[10px] md:text-[16px] lg:text-lg xl:text-xl mb-1 lg:mb-3 ml-6 md:ml-8 whitespace-nowrap">
                 Hasley Huong Nghiem &amp; JB Moni Lek
               </p>
 
-              <h1 className="font-script text-wedding-beige text-4xl font-normal leading-none md:text-5xl md:mr-8 lg:text-6xl">
+              <h1 className="font-script text-wedding-beige text-4xl font-normal leading-none md:text-5xl md:mr-8 lg:text-6xl  xl:text-7xl">
                 ave the date
               </h1>
 
-              <p className="font-sans text-wedding-beige text-[20px] font-extralight tracking-[0.1em] md:text-3xl lg:text-4xl md:mr-8 w-full text-center">
+              <p className="font-sans text-wedding-beige text-[20px] font-extralight tracking-[0.1em] md:text-3xl lg:text-4xl xl:text-5xl md:mr-8 w-full text-center">
                 08 / 08 / 2026
               </p>
             </div>
@@ -191,18 +191,18 @@ function Home() {
 
       {/* --- SECTION: WE ARE GETTING MARRIED --- */}
 
-      <section className="relative z-30 w-full bg-wedding-beige -mt-80 md:-mt-[450px] lg:-mt-[650px] rounded-t-[50vw] pt-24 md:pt-32 pb-48 md:pb-[480px] lg:pb-[580px] px-6 text-center overflow-hidden">
+      <section className="relative z-30 w-full bg-wedding-beige -mt-80 md:-mt-[450px] lg:-mt-[650px] xl:-mt-[800px] rounded-t-[50vw] pt-24 md:pt-32 lg:pt-44 xl:pt-52  pb-48 md:pb-[480px] lg:pb-[580px] xl:pb-[650px] px-6 text-center overflow-hidden">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto space-y-4">
-          <h2 className="font-script text-[28px] md:text-4xl lg:text-5xl">
+          <h2 className="font-script text-[28px] md:text-4xl lg:text-6xl">
             We are getting married!
           </h2>
 
-          <div className="max-w-2xl text-center">
-            <p className="font-sans font-light text-[8px] md:text-base lg:text-lg tracking-wide leading-relaxed">
+          <div className="max-w-3xl text-center">
+            <p className="font-sans font-light text-[8px] md:text-base lg:text-lg xl:text-xl tracking-wide leading-relaxed">
               We are delighted to invite you to celebrate our wedding as we
               exchange vows.
             </p>
-            <p className="font-sans font-light text-[8px] md:text-base tracking-wide leading-relaxed mt-2">
+            <p className="font-sans font-light text-[8px] md:text-base lg:text-lg xl:text-xl tracking-wide leading-relaxed mt-2">
               and share this joyful moment with our dearest family and friends.
             </p>
           </div>
@@ -210,8 +210,8 @@ function Home() {
       </section>
 
       {/* --- IMAGE GALLERY SECTION --- */}
-      <section className="relative z-40 mx-auto -mt-44 md:-mt-[420px] lg:-mt-[500px] h-[390px] w-full max-w-6xl md:h-[900px]">
-        <div className="absolute left-1/2 top-0 z-10 h-[300px] w-[180px] -translate-x-1/2 overflow-hidden rounded-t-full md:h-[650px] md:w-[380px] lg:w-[500px] lg:h-[800px]">
+      <section className="relative z-40 mx-auto -mt-44 md:-mt-[420px] lg:-mt-[500px] xl:-mt-[600px] h-[390px] w-full max-w-6xl md:h-[900px]">
+        <div className="absolute left-1/2 top-0 z-10 h-[300px] w-[180px] -translate-x-1/2 overflow-hidden rounded-t-full md:h-[650px] md:w-[380px] lg:w-[500px] lg:h-[800px] xl:h-[900px]">
           <img
             src={sectionInfoMain}
             alt="Center Couple"
@@ -219,20 +219,20 @@ function Home() {
           />
           {/* Text Overlay: Hương and Moni */}
           <div className="absolute inset-0 flex flex-col items-center justify-start pt-4 md:pt-10 text-white">
-            <span className="font-display text-2xl font-medium md:text-6xl drop-shadow-lg">
+            <span className="font-display text-2xl font-medium md:text-6xl xl:text-7xl drop-shadow-lg">
               Hương
             </span>
-            <span className="my-1 font-display text-xs font-light tracking-widest md:my-3 md:text-2xl">
+            <span className="my-1 font-display text-xs font-light tracking-widest md:my-3 md:text-2xl xl:text-3xl">
               and
             </span>
-            <span className="font-display text-2xl font-medium md:text-6xl drop-shadow-lg">
+            <span className="font-display text-2xl font-medium md:text-6xl xl:text-7xl drop-shadow-lg">
               Moni
             </span>
           </div>
         </div>
         {/* 2. LEFT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-16 left-2 md:left-6 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-52 md:h-[300px] md:w-[180px] lg:w-[220px]">
+        <div className="absolute bottom-16 left-2 md:left-6 lg:left-10 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-52 md:h-[300px] md:w-[180px] lg:w-[240px] lg:h-[380px] lg:bottom-20 xl:h-[480px] xl:w-[300px] xl:-bottom-24">
           <img
             src={sectionInfo1}
             alt="Left Moment"
@@ -242,7 +242,7 @@ function Home() {
 
         {/* 3. RIGHT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-40 md:right-0 md:h-[200px] md:w-[380px]">
+        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-40 md:right-0 md:h-[200px] md:w-[380px] lg:w-[450px] lg:h-[220px] lg:bottom-0 xl:w-[600px] xl:h-[320px] xl:-bottom-56 xl:-right-16">
           <img
             src={sectionInfo2}
             alt="Right Moment"
@@ -252,8 +252,8 @@ function Home() {
       </section>
 
       {/* --- THREE IMAGES SECTION AND WEDDING INFO--- */}
-      <section className="relative z-30 w-full bg-wedding-beige mt-2 md:-mt-32 px-0 md:pb-0">
-        <div className="grid grid-cols-3 gap-1 md:gap-2 max-w-7xl mx-auto h-[200px] md:h-[380px]">
+      <section className="relative z-30 w-full bg-wedding-beige mt-2 md:-mt-32 lg:mt-4 xl:mt-60 px-0 md:pb-0">
+        <div className="grid grid-cols-3 gap-1 md:gap-2 max-w-7xl mx-auto h-[200px] md:h-[380px] xl:h-[550px]">
           {/* Image 1 */}
           <div className="relative w-full h-full overflow-hidden">
             <img
@@ -283,7 +283,7 @@ function Home() {
         </div>
 
         {/* --- INFO DIV: LOCATION & DATE --- */}
-        <div className="relative w-full mt-2 h-[200px] md:h-[300px] overflow-hidden flex items-center justify-center">
+        <div className="relative w-full mt-2 h-[200px] md:h-[300px] xl:h-[400px]  overflow-hidden flex items-center justify-center">
           {/* 1. Background Image */}
           <img
             src={sectionInfoLocation}
@@ -299,8 +299,8 @@ function Home() {
             <div className="flex flex-row items-center justify-center w-full">
               {/* Column 1: Location (Align Right) */}
               <div className="flex-1 flex flex-col items-end text-right pr-6 md:pr-12 space-y-2">
-                <h3 className="font-script text-sm md:text-2xl">Location</h3>
-                <p className="font-sans font-extralight text-xl md:text-4xl leading-tight">
+                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">Location</h3>
+                <p className="font-sans font-extralight text-xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
                   Meliá Danang
                   <br />
                   Beach Resort,
@@ -310,12 +310,12 @@ function Home() {
               </div>
 
               {/* Divider: 2px solid charcoal (lighter) */}
-              <div className="h-24 md:h-36 w-[1px] bg-wedding-charcoal/40"></div>
+              <div className="h-24 md:h-36 xl:h-48 w-[1px] bg-wedding-charcoal/40"></div>
 
               {/* Column 2: Date (Align Left) */}
               <div className="flex-1 flex flex-col items-start text-left pl-6 md:pl-12 space-y-2">
-                <h3 className="font-script text-sm md:text-2xl">Date</h3>
-                <p className="font-sans font-extralight text-xl md:text-4xl leading-tight">
+                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">Date</h3>
+                <p className="font-sans font-extralight text-xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
                   Saturday,
                   <br />
                   August 8th,
@@ -326,13 +326,13 @@ function Home() {
             </div>
 
             {/* 5 Stars */}
-            <div className="flex flex-row gap-3 mt-4 md:mt-16">
+            <div className="flex flex-row gap-3 mt-4 md:mt-16 lg:mt-12">
               {[1, 2, 3, 4, 5].map((star) => (
                 <img
                   key={star}
                   src={starSrc}
                   alt="star"
-                  className="h-3 w-3 md:h-5 md:w-5"
+                  className="h-3 w-3 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8"
                 />
               ))}
             </div>
@@ -345,7 +345,7 @@ function Home() {
         {/* flex-row để giữ bố cục ngang trên mọi màn hình */}
         <div className="max-w-7xl mx-auto flex flex-row items-start md:gap-2">
           {/* 1. Left Column: Image (40%) */}
-          <div className="w-[40%] h-[280px] md:h-[500px]">
+          <div className="w-[40%] h-[280px] md:h-[500px] lg:h-[650px] xl:h-[800px]">
             <div className="w-full h-full rounded-t-full bg-wedding-beige p-[2px] md:p-1 overflow-hidden">
               <img
                 src={sectionTimeline}
@@ -357,7 +357,7 @@ function Home() {
 
           {/* 2. Right Column: Timeline (60%) */}
           <div className="w-[60%] flex flex-col pt-2 md:pt-12">
-            <h2 className="font-script text-xl md:text-4xl mb-6 xs:mb-4 mb:mb-6 md:mb-8 text-center">
+            <h2 className="font-script text-xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 xs:mb-4 mb:mb-6 md:mb-8 lg:mb-10 xl:mb-16 text-center">
               Wedding day timeline
             </h2>
 
@@ -372,12 +372,12 @@ function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-row items-start md:items-center py-3 px-6 xs:py-[10px] mb:py-3 md:py-5 border-b border-gray-300"
+                  className="flex flex-row items-start md:items-center py-3 px-6 xs:py-[10px] mb:py-3 md:py-5 lg:py-8 xl:py-10 border-b border-gray-300"
                 >
-                  <span className="w-10 md:w-40 font-sans font-extralight text-[10px] md:text-lg pt-1 md:pt-0">
+                  <span className="w-10 md:w-40 font-sans font-extralight text-[10px] md:text-lg lg:text-xl xl:text-2xl pt-1 md:pt-0">
                     {item.time}
                   </span>
-                  <span className="flex-1 font-sans font-extralight text-[10px] md:text-lg pl-2 md:pl-0">
+                  <span className="flex-1 font-sans font-extralight text-[10px] md:text-lg lg:text-xl xl:text-2xl pl-2 md:pl-0">
                     {item.event}
                   </span>
                 </div>
@@ -403,7 +403,7 @@ function Home() {
           {/* 1. Header Section */}
           <div className="flex flex-col items-center text-center mb-8 md:mb-10">
             <h2 className="font-script text-2xl md:text-4xl mb-2">Dresscode</h2>
-            <p className="font-sans font-extralight text-xs md:text-base tracking-wide opacity-90">
+            <p className="font-sans font-extralight text-xs md:text-base lg:text-xl tracking-wide opacity-90">
               Festive summer glam, chic & elegant
             </p>
             {/* Line separator */}
@@ -417,12 +417,12 @@ function Home() {
               <img
                 src={ladiesIcon}
                 alt="Ladies Icon"
-                className="w-6 h-6 md:w-8 md:h-8 object-contain mb-4"
+                className="w-6 h-6 md:w-8 md:h-8 object-contain mb-4 lg:mb-6"
               />
-              <h3 className="font-script text-xl md:text-2xl mb-2 md:mb-4">
+              <h3 className="font-script text-xl md:text-2xl lg:text-4xl mb-2 md:mb-4">
                 Ladies
               </h3>
-              <p className="font-sans font-extralight text-[8px] md:text-base max-w-[200px] md:max-w-xs leading-relaxed">
+              <p className="font-sans font-extralight text-[8px] md:text-base lg:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
                 Long dresses or gowns are preferred
               </p>
             </div>
@@ -432,12 +432,12 @@ function Home() {
               <img
                 src={gentlemenIcon}
                 alt="Gentlemen Icon"
-                className="w-6 h-6 md:w-8 md:h-8 object-contain mb-4"
+                className="w-6 h-6 md:w-8 md:h-8 object-contain mb-4 lg:mb-6"
               />
-              <h3 className="font-script text-xl md:text-2xl mb-2 md:mb-4">
+              <h3 className="font-script text-xl md:text-2xl lg:text-4xl mb-2 md:mb-4">
                 Gentlemen
               </h3>
-              <p className="font-sans font-extralight text-[8px] md:text-base max-w-[200px] md:max-w-xs leading-relaxed">
+              <p className="font-sans font-extralight text-[8px] md:text-base lg:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
                 Suits, dress shirts with trousers, or smart-casual ensembles
               </p>
             </div>
@@ -456,10 +456,10 @@ function Home() {
                 className="flex flex-col items-center gap-1 md:gap-2"
               >
                 <div
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 shadow-lg"
+                  className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full border border-white/20 shadow-lg"
                   style={{ backgroundColor: item.color }}
                 ></div>
-                <span className="font-sans font-extralight text-[8px] md:text-xs text-center whitespace-pre-line opacity-80">
+                <span className="font-sans font-extralight text-[8px] md:text-xs lg:text-sm text-center whitespace-pre-line opacity-80">
                   {item.name}
                 </span>
               </div>
@@ -477,27 +477,27 @@ function Home() {
           </h2>
 
           {/* Form Container */}
-          <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-16 pb-10 px-6 md:px-16 md:pt-20 shadow-sm flex flex-col gap-4">
+          <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-16 pb-10 px-6 md:px-16 md:pt-20 lg:px-12 shadow-sm flex flex-col gap-4">
             {/* 1. Your Full Name */}
             <input
               type="text"
               placeholder="Your full name"
               value={mainName}
               onChange={(e) => setMainName(e.target.value)}
-              className="w-full h-12 md:h-14 rounded-full px-6 text-center font-sans font-light text-sm md:text-lg outline-none text-wedding-charcoal placeholder:text-wedding-charcoal"
+              className="w-full h-12 md:h-14 rounded-full px-6 text-center font-sans font-light text-sm md:text-lg lg:text-xl outline-none text-wedding-charcoal placeholder:text-wedding-charcoal"
             />
 
             {/* 2. Who are you coming with? (Toggle Button) */}
             <div className="w-full flex flex-col gap-2">
               <button
                 onClick={() => setIsGuestSectionOpen(!isGuestSectionOpen)}
-                className="w-full h-12 md:h-14 bg-white rounded-full px-6 flex items-center justify-between font-sans font-light text-sm md:text-lg text-[#4a4a4a] outline-none"
+                className="w-full h-12 md:h-14 bg-white rounded-full px-6 flex items-center justify-between font-sans font-light text-sm md:text-lg lg:text-xl text-[#4a4a4a] outline-none"
               >
                 <span className="w-full text-center text-wedding-charcoal">
                   Who are you coming with?{" "}
                   {guests.length > 0 && `(${guests.length})`}
                 </span>
-                <span className="text-2xl font-light text-wedding-charcoal absolute right-12 md:right-40">
+                <span className="text-2xl font-light text-wedding-charcoal absolute right-12 md:right-40 lg:right-72">
                   {isGuestSectionOpen ? "-" : "+"}
                 </span>
               </button>
@@ -576,12 +576,12 @@ function Home() {
                 placeholder="Do you have any special dietary requirements?&#10;(e.g. Vegeterian, No seafood,...)"
                 value={mainDietary}
                 onChange={(e) => setMainDietary(e.target.value)}
-                className="w-full h-32 md:h-40 rounded-[20px] py-4 px-6 text-center font-sans font-light text-sm md:text-lg outline-none text-wedding-charcoal placeholder:text-wedding-charcoal resize-none leading-relaxed"
+                className="w-full h-32 md:h-40 rounded-[20px] py-4 px-6 text-center font-sans font-light text-sm md:text-lg  lg:text-xl outline-none text-wedding-charcoal placeholder:text-wedding-charcoal resize-none leading-relaxed"
               />
             </div>
-
+ 
             {/* 4. Adult Note */}
-            <p className="font-sans italic font-light text-[10px] md:text-sm text-center text-wedding-charcoal mt-2">
+            <p className="font-sans italic font-light text-[10px] md:text-sm lg:text-base text-center text-wedding-charcoal mt-2">
               *Adult celebration — we respectfully ask that guests be 15 years
               old and over.
             </p>
@@ -755,7 +755,7 @@ function Home() {
           <h3 className="font-sans font-bold text-base md:text-2xl mb-4">
             Booking at Melia Danang Beach Resort
           </h3>
-          <p className="font-sans font-light text-xs md:text-base leading-relaxed max-w-4xl mb-6">
+          <p className="font-sans font-light text-xs md:text-base lg:text-lg leading-relaxed max-w-4xl mb-6">
             We have negotiated a special night rate if you wish to stay at the
             Melia Resort! When submitting your booking,
             <br className="hidden md:block" />
@@ -776,7 +776,7 @@ function Home() {
           <h3 className="font-sans font-bold text-base md:text-2xl mb-4">
             Book your stay at other hotels / resorts
           </h3>
-          <p className="font-sans font-light text-xs md:text-base leading-relaxed max-w-3xl mb-8">
+          <p className="font-sans font-light text-xs md:text-base lg:text-lg leading-relaxed max-w-3xl mb-8">
             You can also book at other hotels nearby,
             <br className="hidden md:block" />
             Danang is a small city and Melia Resort is easily accessible from
@@ -816,7 +816,7 @@ function Home() {
           </ul>
 
           {/* Footer Note */}
-          <p className="font-sans font-light text-sm md:text-[18px] leading-relaxed max-w-4xl">
+          <p className="font-sans font-light text-sm md:text-lg leading-relaxed max-w-4xl">
             From the airport, Meliá Danang Beach Resort{" "}
             <span className="font-bold">is just 15 minutes away by taxi</span>,
             <br className="hidden md:block" />
@@ -936,7 +936,7 @@ function Home() {
               {/* Footer Note with Sparkle */}
               <div className="mt-4 flex items-start gap-2">
                 <span className="text-yellow-500 text-xl">✨</span>
-                <p className="font-sans font-medium italic text-xs md:text-base">
+                <p className="font-sans font-medium italic leading-relaxed text-xs md:text-base">
                   Whether you choose a cultural tour, a beach escape, or both,
                   Vietnam and Cambodia offers unforgettable experiences before
                   or after our celebration in Danang.
