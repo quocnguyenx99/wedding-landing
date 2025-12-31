@@ -9,7 +9,7 @@ module.exports = {
       md: "768px", // tablet
       lg: "1024px", // tablet ngang / laptop nhỏ
       xl: "1280px", // desktop
-      "2xl": "1536px",
+      "2xl": "1512px",
       "3xl": "1920px",
     },
     extend: {

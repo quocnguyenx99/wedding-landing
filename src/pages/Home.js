@@ -135,7 +135,7 @@ function Home() {
       </style>
 
       {/* HERO */}
-      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] lg:min-h-[1400px] xl:min-h-[1650px] w-full overflow-hidden">
+      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] lg:min-h-[1400px] xl:min-h-[1750px] 2xl:min-h-[2200px] w-full overflow-hidden">
         {/* Banner image */}
         <img
           src={heroSrc}
@@ -166,8 +166,8 @@ function Home() {
 
         {/* Center content */}
         <div className="absolute inset-x-0 bottom-[65%] md:bottom-[72%] z-20 flex justify-center px-4">
-          <div className="relative top-0 md:top-20 flex flex-row text-wedding-white">
-            <div className="font-script text-wedding-beige text-[4rem] leading-[0.6] md:text-[7rem] lg:text-[8rem] xl:text-[9rem] -mr-2  pb-4 ">
+          <div className="relative top-0 md:top-20 flex flex-row gap-2 text-wedding-white">
+            <div className="font-script text-wedding-beige text-[4rem] leading-[0.95] md:text-[7rem] lg:text-[8rem] xl:text-[9rem] -mr-2  pb-4 inline-block">
               S
             </div>
 
@@ -232,7 +232,7 @@ function Home() {
         </div>
         {/* 2. LEFT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-16 left-2 md:left-6 lg:left-10 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-52 md:h-[300px] md:w-[180px] lg:w-[240px] lg:h-[380px] lg:bottom-20 xl:h-[480px] xl:w-[300px] xl:-bottom-24">
+        <div className="absolute bottom-16 left-2 md:left-6 mb:left-8 lg:left-10 z-20 h-[160px] w-[100px] overflow-hidden md:bottom-52 md:h-[300px] md:w-[180px] lg:w-[240px] lg:h-[380px] lg:bottom-20 xl:h-[480px] xl:w-[300px] xl:-bottom-24">
           <img
             src={sectionInfo1}
             alt="Left Moment"
@@ -299,7 +299,9 @@ function Home() {
             <div className="flex flex-row items-center justify-center w-full">
               {/* Column 1: Location (Align Right) */}
               <div className="flex-1 flex flex-col items-end text-right pr-6 md:pr-12 space-y-2">
-                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">Location</h3>
+                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">
+                  Location
+                </h3>
                 <p className="font-sans font-extralight text-xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
                   Meliá Danang
                   <br />
@@ -314,7 +316,9 @@ function Home() {
 
               {/* Column 2: Date (Align Left) */}
               <div className="flex-1 flex flex-col items-start text-left pl-6 md:pl-12 space-y-2">
-                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">Date</h3>
+                <h3 className="font-script text-sm md:text-2xl xl:text-3xl">
+                  Date
+                </h3>
                 <p className="font-sans font-extralight text-xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
                   Saturday,
                   <br />
@@ -491,13 +495,13 @@ function Home() {
             <div className="w-full flex flex-col gap-2">
               <button
                 onClick={() => setIsGuestSectionOpen(!isGuestSectionOpen)}
-                className="w-full h-12 md:h-14 bg-white rounded-full px-6 flex items-center justify-between font-sans font-light text-sm md:text-lg lg:text-xl text-[#4a4a4a] outline-none"
+                className="relative w-full h-12 md:h-14 bg-white rounded-full px-6 flex items-center justify-center font-sans font-light text-sm md:text-lg lg:text-xl text-[#4a4a4a] outline-none"
               >
                 <span className="w-full text-center text-wedding-charcoal">
                   Who are you coming with?{" "}
                   {guests.length > 0 && `(${guests.length})`}
                 </span>
-                <span className="text-2xl font-light text-wedding-charcoal absolute right-12 md:right-40 lg:right-72">
+                <span className="text-2xl font-light text-wedding-charcoal absolute right-6">
                   {isGuestSectionOpen ? "-" : "+"}
                 </span>
               </button>
@@ -505,7 +509,7 @@ function Home() {
               {/* Guest List Area (Expandable) */}
               {isGuestSectionOpen && (
                 <div className="flex flex-col gap-4 mt-2 p-4 bg-white/50 rounded-2xl border border-white">
-                  <p className="text-center font-sans text-xs md:text-base text-wedding-charcoal mb-2 opacity-60">
+                  <p className="text-center font-sans text-xs md:text-base xl:text-lg text-wedding-charcoal mb-2 opacity-60">
                     (Max 5 guests)
                   </p>
 
@@ -515,14 +519,14 @@ function Home() {
                       className="flex flex-col gap-2 border-b border-[#dcd0c0] pb-4 last:border-0 animate-[fadeIn_0.3s_ease-out]"
                     >
                       <div className="flex justify-between items-end">
-                        <p className="font-sans text-xs font-bold text-wedding-charcoal uppercase tracking-wider">
+                        <p className="font-sans text-xs xl:text-sm font-bold text-wedding-charcoal uppercase tracking-wider">
                           Guest {index + 1}
                         </p>
 
                         {/* Nút Remove được làm đẹp lại */}
                         <button
                           onClick={() => handleRemoveGuest(guest.id)}
-                          className="text-[10px] md:text-xs font-sans uppercase tracking-widest text-[#8b786d] hover:text-[#2c2c2c] border-b border-transparent hover:border-[#2c2c2c] transition-all duration-300 pb-[1px]"
+                          className="text-[10px] md:text-xs xl:text-sm font-sans uppercase tracking-widest text-[#8b786d] hover:text-[#2c2c2c] border-b border-transparent hover:border-[#2c2c2c] transition-all duration-300 pb-[1px]"
                         >
                           Remove
                         </button>
@@ -536,7 +540,7 @@ function Home() {
                         onChange={(e) =>
                           handleGuestChange(guest.id, "name", e.target.value)
                         }
-                        className="w-full h-10 md:h-12 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
+                        className="w-full h-10 md:h-12 xl:h-14 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
                       />
 
                       {/* Guest Dietary */}
@@ -547,7 +551,7 @@ function Home() {
                         onChange={(e) =>
                           handleGuestChange(guest.id, "dietary", e.target.value)
                         }
-                        className="w-full h-10 md:h-12 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
+                        className="w-full h-10 md:h-12 lg:h-14 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
                       />
                     </div>
                   ))}
@@ -561,7 +565,7 @@ function Home() {
                       <span className="w-5 h-5 md:w-6 md:h-6 inline-flex items-center justify-center rounded-full bg-[#dcd0c0] text-white text-[12px] md:text-sm leading-none select-none group-hover:bg-[#8b786d] transition-colors">
                         +
                       </span>
-                      <span className="font-sans text-xs text-[#5e5048] tracking-wide group-hover:text-[#2c2c2c]">
+                      <span className="font-sans text-xs xl:text-sm  text-[#5e5048] tracking-wide group-hover:text-[#2c2c2c]">
                         Add another guest
                       </span>
                     </button>
@@ -579,7 +583,7 @@ function Home() {
                 className="w-full h-32 md:h-40 rounded-[20px] py-4 px-6 text-center font-sans font-light text-sm md:text-lg  lg:text-xl outline-none text-wedding-charcoal placeholder:text-wedding-charcoal resize-none leading-relaxed"
               />
             </div>
- 
+
             {/* 4. Adult Note */}
             <p className="font-sans italic font-light text-[10px] md:text-sm lg:text-base text-center text-wedding-charcoal mt-2">
               *Adult celebration — we respectfully ask that guests be 15 years
@@ -590,7 +594,7 @@ function Home() {
             <div className="flex justify-center mt-6 -mb-16 md:-mb-20 relative z-20">
               <button
                 onClick={handleSubmit}
-                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
+                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm xl:text-base tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
               >
                 Confirm the registration
               </button>
@@ -666,7 +670,7 @@ function Home() {
           <img
             src={sectionWeddingVenue2}
             alt="Meliá Danang Beach Resort"
-            className="w-full h-[360px] md:h-[480px] object-cover"
+            className="w-full h-[360px] md:h-[480px] xl:h-full object-cover"
           />
         </div>
       </section>
@@ -829,7 +833,7 @@ function Home() {
       <section className="w-full bg-white py-16 px-4 md:px-10 md:pb-20">
         <div className="max-w-7xl mx-auto">
           {/* 1. Title: Acid 200 */}
-          <h2 className="font-sans font-extralight text-3xl md:text-4xl text-center mb-12">
+          <h2 className="font-sans font-extralight text-3xl md:text-4xl xl:text-6xl text-center mb-12">
             Adventure Before or After the Wedding
           </h2>
 
@@ -936,7 +940,7 @@ function Home() {
               {/* Footer Note with Sparkle */}
               <div className="mt-4 flex items-start gap-2">
                 <span className="text-yellow-500 text-xl">✨</span>
-                <p className="font-sans font-medium italic leading-relaxed text-xs md:text-base">
+                <p className="font-sans font-medium italic leading-relaxed text-xs md:text-base xl:text-lg">
                   Whether you choose a cultural tour, a beach escape, or both,
                   Vietnam and Cambodia offers unforgettable experiences before
                   or after our celebration in Danang.
@@ -948,7 +952,7 @@ function Home() {
       </section>
 
       {/* --- FINAL SECTION: SEE YOU SOON --- */}
-      <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[50vh] md:h-[70vh] xl:h-[96vh] overflow-hidden">
         <img
           src={footerImg}
           alt="See you soon"
@@ -959,8 +963,8 @@ function Home() {
         <div className="absolute inset-0 bg-black/10"></div>
 
         {/* Text Container */}
-        <div className="absolute top-[36%] xs:top-[28%] mb:top-[32%] md:top-[28%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
-          <h2 className="font-tempting text-wedding-beige text-[32px] md:text-6xl leading-none drop-shadow-lg">
+        <div className="absolute top-[36%] xs:top-[28%] mb:top-[32%] md:top-[28%] xl:top-[22%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
+          <h2 className="font-tempting text-wedding-beige text-[32px] md:text-6xl xl:text-8xl leading-none drop-shadow-lg">
             See you soon.
           </h2>
         </div>
