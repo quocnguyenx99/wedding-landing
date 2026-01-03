@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import heroSrc from "../assets/images/banner-img.jpg";
 
 import sectionInfo1 from "../assets/images/section-info-1.jpg";
@@ -173,17 +173,6 @@ function Home() {
     }
   };
 
-  const particles = useMemo(() => {
-    return Array.from({ length: 70 }).map((_, i) => ({
-      id: i,
-      left: Math.random() * 100 + "%",
-      top: Math.random() * 100 + "%",
-      size: Math.random() * 10 + 5 + "px", // Kích thước từ 5px đến 15px
-      duration: Math.random() * 10 + 10 + "s", // Thời gian bay từ 10s đến 20s
-      delay: Math.random() * 5 + "s",
-    }));
-  }, []);
-
   return (
     <>
       <MusicPlayer />
@@ -246,7 +235,7 @@ function Home() {
       </style>
 
       {/* HERO */}
-      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1000px] lg:min-h-[1400px] xl:min-h-[1750px] 2xl:min-h-[2200px] w-full overflow-hidden">
+      <section className="relative h-[76vh] min-h-[600px] md:min-h-[1100px] lg:min-h-[1400px] xl:min-h-[1750px] 2xl:min-h-[2200px] w-full overflow-hidden">
         {/* Banner image */}
         <img
           src={heroSrc}
@@ -256,24 +245,6 @@ function Home() {
 
         {/* Overlay*/}
         <div className="absolute inset-0 z-10 bg-black/70" />
-
-        {/* --- HIỆU ỨNG ĐỐM SÁNG (Đặt sau Overlay, trước Content) --- */}
-        <div className="absolute inset-0 z-[15] pointer-events-none overflow-hidden">
-          {particles.map((p) => (
-            <div
-              key={p.id}
-              className="absolute rounded-full bg-orange-200 blur-[1px]"
-              style={{
-                left: p.left,
-                top: p.top,
-                width: p.size,
-                height: p.size,
-                opacity: 0.8,
-                animation: `float ${p.duration} infinite ease-in-out ${p.delay}`,
-              }}
-            />
-          ))}
-        </div>
 
         {/* Center content */}
         {/* Container chính: overflow-visible để không cắt nét, pointer-events-none để click xuyên qua nếu cần */}
@@ -288,9 +259,9 @@ function Home() {
             */}
             <div
               className="font-script text-wedding-beige 
-                            text-[4rem] leading-[1.3] mb:text-[5rem]   mb:leading-[1.3]  
-                            md:text-[6rem] md:leading-[1.3]
-                            lg:text-[8.5rem] lg:leading-[1.3]
+                            text-[4rem] leading-[1.35] mb:text-[5rem]   mb:leading-[1.45]  
+                            md:text-[7rem] md:leading-[1.55]
+                            lg:text-[8.5rem] lg:leading-[1.65]
                             xl:text-[10rem]
                             p-4
                             -mr-3 md:-mr-6 lg:-mr-8
@@ -305,17 +276,15 @@ function Home() {
               {/* 1. Names (Hasley... & JB...) */}
               <p
                 className="font-sans text-wedding-beige font-light 
-                            text-xs mb:text-sm md:text-[18px] lg:text-2xl xl:text-3xl
-                            mb-2 md:mb-1 lg:mb-3 ml-4 md:ml-8 lg:ml-14 xl:ml-24
+                            text-xs mb:text-sm md:text-xl lg:text-2xl xl:text-3xl
+                            mb-2 md:mb-2 lg:mb-3 xl:mb-5 ml-4 md:ml-8 lg:ml-14 xl:ml-24
                             whitespace-nowrap opacity-90"
               >
                 Hasley Huong Nghiem &amp; JB Moni Lek
               </p>
 
               {/* 2. "ave the date" */}
-              <h1
-                className="font-script text-wedding-beige text-4xl leading-none mb:text-[40px] md:text-[4rem] lg:text-[6rem] xl:text-[8rem] whitespace-nowrap"
-              >
+              <h1 className="font-script text-wedding-beige text-4xl leading-none mb:text-[40px] md:text-[4.5rem] lg:text-[6rem] xl:text-[8rem] whitespace-nowrap">
                 ave the date
               </h1>
 
@@ -324,7 +293,7 @@ function Home() {
                 className="font-sans text-wedding-beige font-extralight 
                             text-[22px] tracking-[0.15em]
                             mb:text-2xl  mb:tracking-[0.15em]
-                            md:text-4xl md:tracking-[0.2em]
+                            md:text-[40px] md:tracking-[0.2em]
                             lg:text-5xl lg:tracking-[0.25em]
                             xl:text-6xl
                             w-full mt-1 md:mt-2"
@@ -338,16 +307,17 @@ function Home() {
 
       {/* --- SECTION: WE ARE GETTING MARRIED --- */}
 
-      <section className="relative z-30 w-full bg-wedding-beige -mt-80 md:-mt-[450px] lg:-mt-[650px] xl:-mt-[800px] rounded-t-[50vw] pt-24 md:pt-32 lg:pt-44 xl:pt-52  pb-48 md:pb-[480px] lg:pb-[580px] xl:pb-[650px] px-4 text-center overflow-hidden">
+      <section className="relative z-30 w-full bg-wedding-beige -mt-80 md:-mt-[500px] lg:-mt-[650px] xl:-mt-[800px] rounded-t-[50vw] pt-24 md:pt-32 lg:pt-44 xl:pt-52  pb-48 md:pb-[480px] lg:pb-[580px] xl:pb-[650px] px-4 md:px-14 text-center overflow-hidden">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto space-y-4">
-          <h2 className="font-script text-[28px] md:text-4xl lg:text-6xl">
+          <h2 className="font-script text-[28px] md:text-5xl lg:text-6xl xl:text-[68px]">
             We are getting married!
           </h2>
 
           <div className="max-w-3xl text-center">
-            <p className="font-sans font-light text-[10px] mb:text-sm md:text-base lg:text-lg xl:text-xl tracking-wide leading-relaxed">
+            <p className="font-sans font-light text-[10px] mb:text-sm md:text-lg lg:text-2xl xl:text-3xl tracking-wide leading-relaxed">
               We are delighted to invite you to celebrate our wedding as we
-              exchange vows and share this joyful moment with our dearest family and friends.
+              exchange vows and share this joyful moment with our dearest family
+              and friends.
             </p>
           </div>
         </div>
@@ -366,7 +336,7 @@ function Home() {
             <span className="font-display text-3xl tracking-tight font-medium md:text-6xl xl:text-7xl drop-shadow-lg">
               Hương
             </span>
-            <span className="font-display text-base font-light tracking-widest md:my-3 md:text-2xl xl:text-3xl">
+            <span className="font-display text-base font-light tracking-widest md:my-3 md:text-2xl xl:text-4xl">
               and
             </span>
             <span className="font-display text-3xl tracking-tight font-medium md:text-6xl xl:text-7xl drop-shadow-lg">
@@ -386,7 +356,7 @@ function Home() {
 
         {/* 3. RIGHT IMAGE (Landscape, B&W) */}
         {/* Đè lên hình giữa (z-20) */}
-        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-40 md:right-0 mb:h-[110px] md:h-[200px] md:w-[380px] lg:w-[450px] lg:h-[220px] lg:bottom-0 xl:w-[600px] xl:h-[320px] xl:-bottom-56 xl:-right-16">
+        <div className="absolute bottom-0 right-0 z-20 h-[120px] w-[190px] overflow-hidden md:bottom-36 md:right-0 mb:h-[110px] md:h-[200px] md:w-[380px] lg:w-[450px] lg:h-[220px] lg:bottom-0 xl:w-[600px] xl:h-[320px] xl:-bottom-56 xl:-right-16">
           <img
             src={sectionInfo2}
             alt="Right Moment"
@@ -427,7 +397,7 @@ function Home() {
         </div>
 
         {/* --- INFO DIV: LOCATION & DATE --- */}
-        <div className="relative w-full mt-2 h-[200px] md:h-[300px] xl:h-[400px]  overflow-hidden flex items-center justify-center">
+        <div className="relative w-full mt-2 h-[200px] md:h-[350px] lg:h-[400px] xl:h-[550px]  overflow-hidden flex items-center justify-center">
           {/* 1. Background Image */}
           <img
             src={sectionInfoLocation}
@@ -443,10 +413,10 @@ function Home() {
             <div className="flex flex-row items-center justify-center w-full">
               {/* Column 1: Location (Align Right) */}
               <div className="flex-1 flex flex-col items-end text-right pr-6 md:pr-12 space-y-2">
-                <h3 className="font-script text-lg mb:text-xl md:text-2xl xl:text-3xl">
+                <h3 className="font-script text-lg mb:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
                   Location
                 </h3>
-                <p className="font-sans font-extralight text-xl mb:text-2xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+                <p className="font-sans font-extralight text-xl mb:text-2xl md:text-5xl lg:text-6xl xl:text-[68px] leading-tight">
                   Meliá Danang
                   <br />
                   Beach Resort,
@@ -456,14 +426,14 @@ function Home() {
               </div>
 
               {/* Divider: 2px solid charcoal (lighter) */}
-              <div className="h-24 mb:h-28 md:h-36 xl:h-48 w-[1px] bg-wedding-charcoal/40"></div>
+              <div className="h-24 mb:h-28 md:h-48 xl:h-52 w-[1px] bg-wedding-charcoal/40"></div>
 
               {/* Column 2: Date (Align Left) */}
               <div className="flex-1 flex flex-col items-start text-left pl-6 md:pl-12 space-y-2">
-                <h3 className="font-script text-lg mb:text-xl md:text-2xl xl:text-3xl">
+                <h3 className="font-script text-lg mb:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
                   Date
                 </h3>
-                <p className="font-sans font-extralight text-xl mb:text-2xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+                <p className="font-sans font-extralight text-xl mb:text-2xl md:text-5xl lg:text-6xl xl:text-[68px] leading-tight">
                   Saturday,
                   <br />
                   August 8th,
@@ -480,7 +450,7 @@ function Home() {
                   key={star}
                   src={starSrc}
                   alt="star"
-                  className="h-4 w-4 mb:h-5 mb:w-5 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8"
+                  className="h-4 w-4 mb:h-5 mb:w-7 md:h-7 md:w-8 lg:h-9 lg:w-9 xl:h-12 xl:w-12"
                 />
               ))}
             </div>
@@ -505,7 +475,7 @@ function Home() {
 
           {/* 2. Right Column: Timeline (60%) */}
           <div className="w-[60%] flex flex-col pt-2 md:pt-12">
-            <h2 className="font-script xs:text-lg text-[22px] mb:text-[23px] md:text-4xl lg:text-5xl xl:text-6xl mb-6 xs:mb-4 md:mb-8 lg:mb-10 xl:mb-16 text-center">
+            <h2 className="font-script xs:text-lg text-[22px] mb:text-[23px] md:text-[40px] lg:text-[56px] xl:text-[64px] mb-6 xs:mb-4 md:mb-8 lg:mb-10 xl:mb-16 text-center">
               Wedding day timeline
             </h2>
 
@@ -520,12 +490,12 @@ function Home() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-row items-center md:items-center py-3 px-4 xs:py-[10px] mb:py-3 md:py-5 lg:py-8 xl:py-10 border-b border-gray-300"
+                  className="flex flex-row items-center md:items-center py-3 px-4 md:px-3 xs:py-[10px] mb:py-3 md:py-6 lg:py-8 xl:py-10 border-b border-gray-300"
                 >
-                  <span className="w-10 md:w-40 font-sans font-extralight xs:text-[10px] text-xs mb:text-sm md:text-lg lg:text-xl xl:text-2xl pt-1 md:pt-0">
+                  <span className="w-10 md:w-40 font-sans font-extralight xs:text-[10px] text-xs mb:text-sm md:text-xl lg:text-3xl xl:text-4xl pt-1 md:pt-0">
                     {item.time}
                   </span>
-                  <span className="flex-1 font-sans font-extralight xs:text-[10px] mb:text-sm text-xs md:text-lg lg:text-xl xl:text-2xl pl-2 md:pl-0">
+                  <span className="flex-1 font-sans font-extralight xs:text-[10px] mb:text-sm text-xs md:text-xl lg:text-3xl xl:text-4xl pl-2 md:pl-0">
                     {item.event}
                   </span>
                 </div>
@@ -536,7 +506,7 @@ function Home() {
       </section>
 
       {/* --- DRESSCODE SECTION --- */}
-      <section className="relative w-full h-[350px] xs:h-[380px] mb:h-[420px] md:h-[500px] overflow-hidden">
+      <section className="relative w-full h-[350px] xs:h-[380px] mb:h-[420px] md:h-[580px] lg:h-[650px] xl:h-[800px] overflow-hidden">
         {/* 1. Background Image (Centered & Overlay) */}
         <img
           src={sectionDresscodeBg}
@@ -550,8 +520,10 @@ function Home() {
         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-wedding-beige">
           {/* 1. Header Section */}
           <div className="flex flex-col items-center text-center mb-8 md:mb-10">
-            <h2 className="font-script text-[28px] mb:text-3xl md:text-4xl">Dresscode</h2>
-            <p className="font-sans font-extralight text-xs mb:text-sm md:text-base lg:text-xl tracking-wide opacity-90">
+            <h2 className="font-script text-[28px] mb:text-3xl md:text-5xl lg:text-6xl xl:text-7xl">
+              Dresscode
+            </h2>
+            <p className="font-sans font-extralight text-xs mb:text-sm md:text-xl lg:text-2xl xl:text-3xl tracking-wide opacity-90">
               Festive summer glam, chic & elegant
             </p>
             {/* Line separator */}
@@ -565,12 +537,12 @@ function Home() {
               <img
                 src={ladiesIcon}
                 alt="Ladies Icon"
-                className="w-6 h-6 mb:w-8 mb:h-8 md:w-8 md:h-8 object-contain mb-4 lg:mb-6"
+                className="w-6 h-6 mb:w-8 mb:h-8 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:h-20 xl:w-20 object-contain mb-4 md:mb-6 lg:mb-8 xl:mb-10"
               />
-              <h3 className="font-script text-xl mb:text-2xl md:text-2xl lg:text-4xl mb-2 md:mb-4">
+              <h3 className="font-script text-xl mb:text-2xl md:text-3xl lg:text-5xl xl:text-6xl mb-2 md:mb-4">
                 Ladies
               </h3>
-              <p className="font-sans font-extralight text-xs mb:text-sm md:text-base lg:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
+              <p className="font-sans font-extralight text-xs mb:text-sm md:text-xl lg:text-2xl max-w-[200px] md:max-w-xs leading-relaxed">
                 Long dresses or gowns are preferred
               </p>
             </div>
@@ -580,12 +552,12 @@ function Home() {
               <img
                 src={gentlemenIcon}
                 alt="Gentlemen Icon"
-                className="w-6 h-6 mb:w-8 mb:h-8 md:w-8 md:h-8 object-contain mb-4 lg:mb-6"
-              /> 
-              <h3 className="font-script text-xl mb:text-2xl md:text-2xl lg:text-4xl mb-2 md:mb-4">
+                className="w-6 h-6 mb:w-8 mb:h-8 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:h-20 xl:w-20 object-contain mb-4 md:mb-6 lg:mb-8 xl:mb-10" 
+              />
+              <h3 className="font-script text-xl mb:text-2xl md:text-3xl lg:text-5xl xl:text-6xl mb-2 md:mb-4">
                 Gentlemen
               </h3>
-              <p className="font-sans font-extralight text-xs mb:text-sm md:text-base lg:text-lg max-w-[200px] md:max-w-xs leading-relaxed">
+              <p className="font-sans font-extralight text-xs mb:text-sm md:text-xl lg:text-2xl  max-w-[200px] md:max-w-xs leading-relaxed">
                 Suits, dress shirts with trousers, or smart-casual ensembles
               </p>
             </div>
@@ -604,10 +576,10 @@ function Home() {
                 className="flex flex-col items-center gap-1 md:gap-2"
               >
                 <div
-                  className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full border border-white/20 shadow-lg"
+                  className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border border-white/20 shadow-lg"
                   style={{ backgroundColor: item.color }}
                 ></div>
-                <span className="font-sans font-extralight text-[10px] mb:text-xs md:text-xs lg:text-sm text-center whitespace-pre-line opacity-80">
+                <span className="font-sans font-extralight text-[10px] mb:text-xs md:text-base lg:text-xl text-center whitespace-pre-line opacity-80">
                   {item.name}
                 </span>
               </div>
@@ -617,16 +589,22 @@ function Home() {
       </section>
 
       {/* --- RSVP / JOIN US SECTION --- */}
-      <section className="relative w-full bg-white py-12 px-4 mb:py-16 md:py-16">
+      <section className="relative w-full bg-white py-12 px-4 mb:py-16 md:py-24">
         <div className="max-w-2xl mx-auto flex flex-col items-center">
           {/* Title: Join us */}
-          <h2 className="relative z-10 font-script text-4xl md:text-6xl -mb-2 md:-mb-4">
+          <h2 className="relative z-10 font-script text-4xl md:text-6xl lg:text-7xl -mb-2 md:-mb-4">
             Join us
           </h2>
 
           {/* Form Container */}
-          <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-16 pb-10 px-6 md:px-16 md:pt-20 lg:px-12 shadow-sm flex flex-col gap-4">
-            
+          <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-8 pb-10 px-6 md:px-16 md:pt-20 lg:px-12 shadow-sm flex flex-col gap-4">
+            {/* Deadline Note - Mới thêm */}
+            <div className="flex justify-center w-full mb-2">
+              <p className="font-sans font-bold text-center xs:text-xs text-sm mb:text-base md:text-2xl lg:text-[28px] bg-white px-6 py-2 rounded-full shadow-sm">
+                Please register before 31st March 2026
+              </p>
+            </div>
+
             {/* Guest List Area - Hiển thị trực tiếp */}
             <div className="flex flex-col gap-6 mt-2">
               {/* Bỏ text (Max 5 guests) */}
@@ -637,7 +615,7 @@ function Home() {
                   className="flex flex-col gap-3 border-b border-[#dcd0c0]/50 pb-6 last:border-0 animate-[fadeIn_0.3s_ease-out]"
                 >
                   <div className="flex justify-between items-end px-1">
-                    <p className="font-sans text-sm mb:text-lg xl:text-sm font-bold text-wedding-charcoal uppercase tracking-wider">
+                    <p className="font-sans text-sm mb:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold text-wedding-charcoal uppercase tracking-wider">
                       Guest {index + 1}
                     </p>
 
@@ -645,7 +623,7 @@ function Home() {
                     {index > 0 && (
                       <button
                         onClick={() => handleRemoveGuest(guest.id)}
-                        className="text-xs mb:text-sm md:text-xs xl:text-sm font-sans uppercase tracking-widest text-[#8b786d] hover:text-[#2c2c2c] border-b border-transparent hover:border-[#2c2c2c] transition-all duration-300 pb-[1px]"
+                        className="text-xs mb:text-sm md:text-lg lg:text-xl xl:text-xl font-sans uppercase tracking-widest text-[#8b786d] hover:text-[#2c2c2c] border-b border-transparent hover:border-[#2c2c2c] transition-all duration-300 pb-[1px]"
                       >
                         Remove
                       </button>
@@ -662,7 +640,7 @@ function Home() {
                         handleGuestChange(guest.id, "name", e.target.value)
                       }
                       // Style giống input chính cũ: rounded-full, bg-white, h-12/14
-                      className={`w-full h-12 md:h-14 rounded-2xl px-6 border bg-white font-sans font-light text-sm mb:text-base md:text-lg text-wedding-charcoal placeholder:text-wedding-charcoal/60 outline-none transition-all shadow-sm ${
+                      className={`w-full h-12 md:h-16 lg:h-20  rounded-2xl px-6 border bg-white font-sans font-light text-sm mb:text-base md:text-xl lg:text-2xl text-wedding-charcoal placeholder:text-wedding-charcoal/60 outline-none transition-all shadow-sm ${
                         errors[guest.id]
                           ? "border-red-400 focus:border-red-400"
                           : "border-transparent focus:border-[#dcd0c0]"
@@ -674,14 +652,14 @@ function Home() {
                   </div>
 
                   {/* Guest Dietary Input */}
-                   <textarea
-                    placeholder="Do you have any special dietary requirements? (e.g. Vegeterian, No seafood,...)"
+                  <textarea
+                    placeholder="Do you have any special dietary requirements ? (e.g. Vegeterian, No seafood,...) - Optional"
                     value={guest.dietary}
                     onChange={(e) =>
                       handleGuestChange(guest.id, "dietary", e.target.value)
                     }
                     rows={4}
-                    className="w-full rounded-2xl px-6 py-3 md:py-4 border border-transparent bg-white font-sans font-light text-sm mb:text-base md:text-lg text-wedding-charcoal placeholder:text-wedding-charcoal/60 outline-none transition-all shadow-sm focus:border-[#dcd0c0] resize-none"
+                    className="w-full rounded-2xl px-6 py-3 md:py-4 border border-transparent bg-white font-sans font-light text-sm mb:text-base md:text-xl lg:text-2xl text-wedding-charcoal placeholder:text-wedding-charcoal/60 outline-none transition-all shadow-sm focus:border-[#dcd0c0] resize-none"
                   />
                 </div>
               ))}
@@ -695,7 +673,7 @@ function Home() {
                   <span className="w-6 h-6 inline-flex items-center justify-center rounded-full bg-[#8b786d] text-white text-sm leading-none select-none group-hover:bg-[#5e5048] transition-colors">
                     +
                   </span>
-                  <span className="font-sans text-sm mb:text-base md:text-base text-[#5e5048] tracking-wide group-hover:text-[#2c2c2c]">
+                  <span className="font-sans text-sm mb:text-base md:text-xl lg:text-2xl text-[#5e5048] tracking-wide group-hover:text-[#2c2c2c]">
                     Add another guest
                   </span>
                 </button>
@@ -703,7 +681,7 @@ function Home() {
             </div>
 
             {/* Adult Note */}
-            <p className="font-sans italic font-light text-xs mb:text-sm md:text-sm lg:text-base text-center text-wedding-charcoal mt-4">
+            <p className="font-sans italic font-light text-xs mb:text-sm md:text-xl lg:text-2xl text-center text-wedding-charcoal mt-4">
               *Adult celebration — we respectfully ask that guests be 15 years
               old and over.
             </p>
@@ -713,7 +691,7 @@ function Home() {
               <button
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-sm mb:text-base md:text-sm xl:text-base tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-sm mb:text-base md:text-xl lg:text-2xl tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Processing..." : "Confirm the registration"}
               </button>
@@ -783,7 +761,7 @@ function Home() {
 
       {/* --- WEDDING VENUE SECTION --- */}
       <section className="w-full bg-white">
-        <div className="relative w-full h-[220px] mb:h-[250px] md:h-[300px] overflow-hidden">
+        <div className="relative w-full h-[220px] mb:h-[250px] md:h-[300px] lg:h-[350px] overflow-hidden">
           {/* faint map background */}
           <img
             src={sectionWeddingVenue}
@@ -793,13 +771,13 @@ function Home() {
 
           {/* beige overlay + content */}
           <div className="absolute inset-0 bg-[#F3E9D9]/95 flex flex-col items-center justify-center text-center px-6">
-            <h3 className="font-tempting text-[28px] mb:text-[30px] md:text-4xl">
+            <h3 className="font-tempting leading-[1.9] md:leading-[2.1] lg:leading-[2.2] text-[28px] mb:text-[30px] md:text-5xl lg:text-6xl">
               Wedding venue
             </h3>
-            <p className="font-sans font-extralight text-base mb:text-xl md:text-3xl mt-2">
+            <p className="font-sans font-extralight text-base mb:text-xl md:text-3xl lg:text-4xl mt-2 md:mt-0">
               Meliá Danang Beach Resort
             </p>
-            <p className="font-sans text-sm mb:text-base md:text-xl mt-2">
+            <p className="font-sans text-sm mb:text-base md:text-2xl lg:text-3xl mt-2">
               Address: 19 Truong Sa, Group 39, Ngu Hanh Son, Danang, Vietnam
             </p>
 
@@ -807,7 +785,7 @@ function Home() {
               to="https://www.google.com/maps/place/Meli%C3%A1+Danang+Beach+Resort/@16.0002912,108.2664412,17z/data=!4m9!3m8!1s0x314210c5cab81527:0xfd5b35311bbbd0fc!5m2!4m1!1i2!8m2!3d16.0002912!4d108.2690161!16s%2Fg%2F1q67pwtd0?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-3 md:px-6 md:py-3 font-sans font-bold uppercase text-xs mb:text-sm md:text-sm tracking-wide text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
+              className="mt-4 bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-3 md:px-6 md:py-3 font-sans font-bold uppercase text-xs mb:text-sm md:text-lg lg:text-xl tracking-wide text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
             >
               See map
             </Link>
@@ -900,17 +878,18 @@ function Home() {
         {/* Content Container */}
         <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-10 max-w-5xl mx-auto text-[#2c2c2c]">
           {/* Title */}
-          <h2 className="font-tempting text-[28px] mb:text-[30px] md:text-4xl leading-[2.2]">
+          <h2 className="font-tempting text-[28px] mb:text-[30px] md:text-5xl lg:text-6xl leading-[2.2] md:leading-[2.3] lg:leading-[2.4]">
             Accommodation
           </h2>
 
           {/* Block 1: Melia Resort */}
-          <h3 className="font-sans font-bold text-base mb:text-lg md:text-2xl mb-4">
+          <h3 className="font-sans font-bold text-base mb:text-lg md:text-3xl lg:text-4xl mb-4">
             Booking at Melia Danang Beach Resort
           </h3>
-          <p className="font-sans font-light text-xs mb:text-sm md:text-base lg:text-lg leading-relaxed max-w-4xl mb-4">
+          <p className="font-sans font-light text-xs mb:text-sm md:text-xl lg:text-2xl leading-relaxed max-w-4xl mb-4 md:mb-8 lg:mb-10">
             We have negotiated a special night rate if you wish to stay at the
-            Melia Resort! When submitting your booking, please follow the instructions to receive the special wedding rate.
+            Melia Resort! When submitting your booking, please follow the
+            instructions to receive the special wedding rate.
           </p>
 
           {/* Button Instruction */}
@@ -918,18 +897,18 @@ function Home() {
             to="https://drive.google.com/file/d/1nCn5NvcGxg4u-oeqVDUlTzgOgtFvWLIt/view?usp=drivesdk"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-3 md:px-8 md:py-3 font-sans font-bold text-xs mb:text-sm md:text-sm tracking-widest uppercase hover:scale-105 transition-transform duration-300 mb-8 inline-block text-center"
+            className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-5 py-3 md:px-8 md:py-3 font-sans font-bold text-xs mb:text-sm md:text-lg lg:text-xl tracking-widest uppercase hover:scale-105 transition-transform duration-300 mb-8 inline-block text-center"
           >
             Instruction
           </Link>
 
           {/* Block 2: Other Hotels */}
-          <h3 className="font-sans font-bold text-base mb:text-lg md:text-2xl mb-4">
+          <h3 className="font-sans font-bold text-base mb:text-lg md:text-3xl lg:text-4xl mb-4">
             Book your stay at other hotels / resorts
           </h3>
-          <p className="font-sans font-light text-xs mb:text-sm md:text-base lg:text-lg leading-relaxed max-w-3xl mb-5">
-            You can also book at other hotels nearby, Danang is a small city and Melia Resort is easily accessible from
-            any location!
+          <p className="font-sans font-light text-xs mb:text-sm md:text-xl lg:text-2xl leading-relaxed max-w-3xl mb-5 lg:mb-8">
+            You can also book at other hotels nearby, Danang is a small city and
+            Melia Resort is easily accessible from any location!
           </p>
 
           {/* Plane Image */}
@@ -942,32 +921,31 @@ function Home() {
           </div>
 
           {/* Block 3: Flying Info */}
-          <h2 className="font-sans font-extralight text-3xl mb:text-4xl md:text-5xl mb-6">
+          <h2 className="font-sans font-extralight text-3xl mb:text-4xl md:text-6xl lg:text-7xl mb-6">
             Flying to Danang (DAD)
           </h2>
 
-          <h3 className="font-sans font-bold text-base mb:text-lg md:text-2xl mb-4">
+          <h3 className="font-sans font-bold text-base mb:text-lg md:text-3xl lg:text-[32px] mb-4">
             Danang is easily reachable from around the world. You may:
           </h3>
 
-          <ul className="font-sans font-light text-xs mb:text-sm md:text-base text-left list-disc pl-5 md:pl-0 space-y-2 max-w-3xl mx-auto mb-8 marker:text-[#8b786d]">
+          <ul className="font-sans font-light text-xs mb:text-sm md:text-lg lg:text-xl text-left list-disc pl-5 md:pl-0 space-y-2 max-w-3xl mx-auto mb-8 marker:text-[#8b786d]">
             <li>
               Take a direct or connecting flight via hubs such as Doha,
               Singapore, Dubai, Bangkok, or Seoul.
             </li>
             <li>
               Combine your trip with a short tour of Vietnam, visiting Hanoi or
-              Ho Chi Minh City
-              <br className="hidden md:block" />
-              (many more international direct flights) before flying to Danang
-              with Vietnam Airlines.
+              Ho Chi Minh City (many more international direct flights) before
+              flying to Danang with Vietnam Airlines.
             </li>
           </ul>
 
           {/* Footer Note */}
-          <p className="font-sans font-light text-sm mb:text-base md:text-lg leading-relaxed max-w-4xl">
+          <p className="font-sans font-light text-sm mb:text-base md:text-2xl lg:text-3xl leading-relaxed max-w-4xl">
             From the airport, Meliá Danang Beach Resort{" "}
-            <span className="font-bold">is just 15 minutes away by taxi</span>, ready to welcome you for our celebration.
+            <span className="font-bold">is just 15 minutes away by taxi</span>,
+            ready to welcome you for our celebration.
           </p>
         </div>
       </section>
@@ -976,20 +954,20 @@ function Home() {
       <section className="w-full bg-white py-16 px-4 md:px-10 md:pb-20">
         <div className="max-w-7xl mx-auto">
           {/* 1. Title: Acid 200 */}
-          <h2 className="font-sans font-extralight text-3xl mb:text-4xl md:text-4xl xl:text-6xl text-center mb-12">
+          <h2 className="font-sans font-extralight text-3xl mb:text-4xl md:text-6xl xl:text-7xl text-center mb-12">
             Adventure Before or After the Wedding
           </h2>
 
           {/* 2. Layout Rows: 60% Text - 40% Image */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-8 items-start">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-2 items-start">
             {/* Left Column: Text (60%) */}
             <div className="w-full md:w-[60%] flex flex-col gap-8">
               {/* North */}
               <div>
-                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-xl mb-2">
+                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-2xl lg:text-3xl mb-2">
                   North of Vietnam
                 </h3>
-                <ul className="font-sans text-sm mb:text-base md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                <ul className="font-sans text-sm mb:text-base md:text-lg lg:text-2xl list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
                   <li>
                     <span className="font-bold">Hanoi (2 – 3 days)</span> – The
                     charming northern capital with lakes, Indochine
@@ -1010,10 +988,10 @@ function Home() {
 
               {/* Center */}
               <div>
-                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-xl mb-2">
+                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-2xl lg:text-3xl mb-2">
                   Center of Vietnam
                 </h3>
-                <ul className="font-sans text-sm mb:text-base md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                <ul className="font-sans text-sm mb:text-base md:text-lg lg:text-2xl list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
                   <li>
                     <span className="font-bold">
                       Danang and nearby Hoi An (2 - 3 days)
@@ -1032,10 +1010,10 @@ function Home() {
 
               {/* South */}
               <div>
-                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-xl mb-2">
+                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-2xl lg:text-3xl mb-2">
                   South of Vietnam
                 </h3>
-                <ul className="font-sans text-sm mb:text-base md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                <ul className="font-sans text-sm mb:text-base md:text-lg lg:text-2xl list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
                   <li>
                     <span className="font-bold">
                       Ho Chi Minh City (2 – 3 days)
@@ -1053,11 +1031,11 @@ function Home() {
 
               {/* Cambodia */}
               <div>
-                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-xl mb-2">
+                <h3 className="font-sans !font-bold text-base mb:text-lg md:text-2xl lg:text-3xl mb-2">
                   Nearby Country to Explore: Cambodia - The Hometown of The
                   Groom
                 </h3>
-                <ul className="font-sans text-sm mb:text-base md:text-base list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
+                <ul className="font-sans text-sm mb:text-base md:text-lg lg:text-2xl list-disc pl-5 space-y-2 marker:text-wedding-charcoal leading-relaxed">
                   <li>
                     <span className="font-bold">Phnom Penh (2 – 3 days)</span> –
                     Gritty, soulful, and raw Cambodia - royal palaces, river
@@ -1083,10 +1061,10 @@ function Home() {
               {/* Footer Note with Sparkle */}
               <div className="mt-4 flex items-start gap-2">
                 <span className="text-yellow-500 text-xl">✨</span>
-                <p className="font-sans font-medium italic leading-relaxed text-sm mb:text-base md:text-base xl:text-lg">
+                <p className="font-sans font-medium italic leading-relaxed text-sm mb:text-base md:text-xl lg:text-xl">
                   Whether you choose a cultural tour, a beach escape, or both,
-                  Vietnam and Cambodia offer unforgettable experiences before
-                  or after our celebration in Danang.
+                  Vietnam and Cambodia offer unforgettable experiences before or
+                  after our celebration in Danang.
                 </p>
               </div>
             </div>
@@ -1095,7 +1073,7 @@ function Home() {
       </section>
 
       {/* --- FINAL SECTION: SEE YOU SOON --- */}
-      <section className="relative w-full h-[50vh] md:h-[70vh] xl:h-[96vh] overflow-hidden">
+      <section className="relative w-full h-[50vh] md:h-[70vh] xl:h-[150vh] overflow-hidden">
         <img
           src={footerImg}
           alt="See you soon"
@@ -1107,7 +1085,7 @@ function Home() {
 
         {/* Text Container */}
         <div className="absolute top-[36%] xs:top-[28%] mb:top-[32%] md:top-[28%] xl:top-[22%] left-0 w-full text-center -translate-y-1/2 z-10 px-4">
-          <h2 className="font-tempting text-wedding-beige text-[32px] mb:text-4xl md:text-6xl xl:text-8xl leading-none drop-shadow-lg">
+          <h2 className="font-tempting text-wedding-beige text-[32px] mb:text-4xl md:text-7xl lg:text-8xl xl:text-9xl leading-none drop-shadow-lg">
             See you soon.
           </h2>
         </div>
