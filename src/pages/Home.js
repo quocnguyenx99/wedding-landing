@@ -42,6 +42,7 @@ import mapAdventure from "../assets/images/section-after-wedding-map.jpg";
 // Import hình ảnh cho section cuối
 import footerImg from "../assets/images/section-end.jpg";
 import { Link } from "react-router-dom";
+import MusicPlayer from "../components/MusicPlayer";
 
 function Home() {
   // --- STATE CHO RSVP FORM ---
@@ -54,6 +55,14 @@ function Home() {
 
   // State popup
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  // State popup lỗi
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+
+  // State validation errors
+  const [errors, setErrors] = useState({});
+
+  // State loading
+  const [isLoading, setIsLoading] = useState(false);
 
   // Xử lý thêm khách (Max 5)
   const handleAddGuest = () => {
@@ -65,21 +74,110 @@ function Home() {
   // Xử lý xóa khách
   const handleRemoveGuest = (id) => {
     setGuests(guests.filter((g) => g.id !== id));
+    // Xóa lỗi tương ứng nếu có
+    const newErrors = { ...errors };
+    delete newErrors[id];
+    setErrors(newErrors);
   };
 
   // Xử lý thay đổi thông tin khách
   const handleGuestChange = (id, field, value) => {
     setGuests(guests.map((g) => (g.id === id ? { ...g, [field]: value } : g)));
+
+    // Clear error khi user gõ
+    if (field === "name" && errors[id]) {
+      const newErrors = { ...errors };
+      delete newErrors[id];
+      setErrors(newErrors);
+    }
+  };
+
+  // Validate Form
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    // Validate Main Name
+    if (!mainName.trim()) {
+      newErrors.mainName = "Full name is required";
+      isValid = false;
+    } else if (mainName.length > 150) {
+      newErrors.mainName = "Full name must not exceed 150 characters";
+      isValid = false;
+    }
+
+    // Validate Guests
+    guests.forEach((guest) => {
+      if (!guest.name.trim()) {
+        newErrors[guest.id] = "Guest name is required";
+        isValid = false;
+      } else if (guest.name.length > 150) {
+        newErrors[guest.id] = "Guest name must not exceed 150 characters";
+        isValid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   // Xử lý submit
-  const handleSubmit = () => {
-    // Ở đây bạn có thể thêm logic gửi API
-    setShowSuccessPopup(true);
+  const handleSubmit = async () => {
+    // 1. Validate
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    // 2. Prepare Payload
+    const payload = {
+      full_name: mainName,
+      dietary: mainDietary, // Map main dietary input
+      note: "", // Default empty as per requirement logic (or could be null)
+      status: "attending", // Default status
+      companions: guests.map((g) => ({
+        full_name: g.name,
+        dietary: g.dietary,
+      })),
+    };
+
+    try {
+      // 3. Call API
+      const response = await fetch(
+        "https://be.dudoanchungketlcp-tta.vn/api/member",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        // 4. Success
+        setShowSuccessPopup(true);
+        // Reset form (optional)
+        setMainName("");
+        setMainDietary("");
+        setGuests([]);
+        setErrors({});
+      } else {
+        // 5. API Error
+        setShowErrorPopup(true);
+      }
+    } catch (error) {
+      // Network Error
+      console.error("Error submitting RSVP:", error);
+      setShowErrorPopup(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const particles = useMemo(() => {
-    return Array.from({ length: 65 }).map((_, i) => ({
+    return Array.from({ length: 70 }).map((_, i) => ({
       id: i,
       left: Math.random() * 100 + "%",
       top: Math.random() * 100 + "%",
@@ -91,6 +189,8 @@ function Home() {
 
   return (
     <>
+
+    {/* <MusicPlayer /> */}
       <style>
         {`
           @keyframes float {
@@ -131,6 +231,21 @@ function Home() {
             font-weight: 200;
             letter-spacing: 0.2px;
           }
+          
+          /* Error text animation */
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+            20%, 40%, 60%, 80% { transform: translateX(2px); }
+          }
+          .error-text {
+            color: #e53e3e;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            margin-left: 1rem;
+            font-family: sans-serif;
+            animation: shake 0.4s ease-in-out;
+          }
         `}
       </style>
 
@@ -165,23 +280,58 @@ function Home() {
         </div>
 
         {/* Center content */}
-        <div className="absolute inset-x-0 bottom-[65%] md:bottom-[72%] z-20 flex justify-center px-4">
-          <div className="relative top-0 md:top-20 flex flex-row gap-2 text-wedding-white">
-            <div className="font-script text-wedding-beige text-[4rem] leading-[0.95] md:text-[7rem] lg:text-[8rem] xl:text-[9rem] -mr-2  pb-4 inline-block">
+        {/* Container chính: overflow-visible để không cắt nét, pointer-events-none để click xuyên qua nếu cần */}
+        <div className="absolute inset-x-0 bottom-[70%] md:bottom-[70%] lg:bottom-[68%] z-20 flex justify-center px-4 overflow-visible pointer-events-none">
+          
+          {/* Flex container giữ bố cục ngang: [S] [Phần còn lại] */}
+          <div className="relative flex flex-row items-center justify-center gap-[0.5] md:gap-2 lg:gap-5 text-wedding-white">
+            
+            {/* --- KHỐI TRÁI: CHỮ S --- */}
+            {/* 
+               - leading-[1.3]: Quan trọng nhất để fix lỗi mất nét trên iPhone.
+               - p-4: Tạo vùng đệm an toàn xung quanh chữ.
+               - -mr-3: Kéo khối bên phải lại gần chữ S hơn (vì chữ S có khoảng trắng bên phải).
+            */}
+            <div className="font-script text-wedding-beige 
+                            text-[3.5rem] leading-[1.3]      
+                            md:text-[6rem] md:leading-[1.3]
+                            lg:text-[8.5rem] lg:leading-[1.3]
+                            xl:text-[10rem]
+                            p-4
+                            -mr-3 md:-mr-6 lg:-mr-8
+                            -mb-2 md:-mb-4
+                            inline-block whitespace-nowrap z-10 relative">
               S
             </div>
 
-            {/* Right side content */}
-            <div className="flex flex-col items-start md:items-center">
-              <p className="font-sans text-wedding-beige font-light text-[10px] md:text-[16px] lg:text-lg xl:text-xl mb-1 lg:mb-3 ml-6 md:ml-8 whitespace-nowrap">
+            {/* --- KHỐI PHẢI: TÊN + AVE THE DATE + NGÀY --- */}
+            <div className="flex flex-col items-start justify-center z-20 translate-y-2 md:translate-y-4">
+              
+              {/* 1. Names (Hasley... & JB...) */}
+              <p className="font-sans text-wedding-beige font-light 
+                            text-[9px] md:text-[18px] lg:text-2xl xl:text-3xl
+                            mb-0 md:mb-1 lg:mb-3 ml-4 md:ml-8 lg:ml-14 xl:ml-24
+                            whitespace-nowrap opacity-90">
                 Hasley Huong Nghiem &amp; JB Moni Lek
               </p>
 
-              <h1 className="font-script text-wedding-beige text-4xl font-normal leading-none md:text-5xl md:mr-8 lg:text-6xl  xl:text-7xl">
+              {/* 2. "ave the date" */}
+              <h1 className="font-script text-wedding-beige 
+                             text-[2rem] leading-none
+                             md:text-[4rem]
+                             lg:text-[6rem]
+                             xl:text-[8rem]
+                             whitespace-nowrap">
                 ave the date
               </h1>
 
-              <p className="font-sans text-wedding-beige text-[20px] font-extralight tracking-[0.1em] md:text-3xl lg:text-4xl xl:text-5xl md:mr-8 w-full text-center">
+              {/* 3. Date (08 / 08 / 2026) */}
+              <p className="font-sans text-wedding-beige font-extralight 
+                            text-base tracking-[0.15em]
+                            md:text-4xl md:tracking-[0.2em]
+                            lg:text-5xl lg:tracking-[0.25em]
+                            xl:text-6xl
+                            w-full text-center mt-1 md:mt-2">
                 08 / 08 / 2026
               </p>
             </div>
@@ -483,13 +633,25 @@ function Home() {
           {/* Form Container */}
           <div className="w-full bg-[#F3E9D9] rounded-[30px] pt-16 pb-10 px-6 md:px-16 md:pt-20 lg:px-12 shadow-sm flex flex-col gap-4">
             {/* 1. Your Full Name */}
-            <input
-              type="text"
-              placeholder="Your full name"
-              value={mainName}
-              onChange={(e) => setMainName(e.target.value)}
-              className="w-full h-12 md:h-14 rounded-full px-6 text-center font-sans font-light text-sm md:text-lg lg:text-xl outline-none text-wedding-charcoal placeholder:text-wedding-charcoal"
-            />
+            <div className="w-full">
+              <input
+                type="text"
+                placeholder="Your full name"
+                value={mainName}
+                onChange={(e) => {
+                  setMainName(e.target.value);
+                  if (errors.mainName) setErrors({ ...errors, mainName: null });
+                }}
+                className={`w-full h-12 md:h-14 rounded-full px-6 text-center font-sans font-light text-sm md:text-lg lg:text-xl outline-none text-wedding-charcoal placeholder:text-wedding-charcoal ${
+                  errors.mainName ? "border-2 border-red-400" : ""
+                }`}
+              />
+              {errors.mainName && (
+                <p className="error-text text-left md:text-center">
+                  {errors.mainName}
+                </p>
+              )}
+            </div>
 
             {/* 2. Who are you coming with? (Toggle Button) */}
             <div className="w-full flex flex-col gap-2">
@@ -533,15 +695,24 @@ function Home() {
                       </div>
 
                       {/* Guest Name */}
-                      <input
-                        type="text"
-                        placeholder={`Full name`}
-                        value={guest.name}
-                        onChange={(e) =>
-                          handleGuestChange(guest.id, "name", e.target.value)
-                        }
-                        className="w-full h-10 md:h-12 xl:h-14 rounded-lg px-4 border border-white bg-white/80 focus:bg-white focus:border-[#dcd0c0] font-sans font-light text-xs outline-none transition-all"
-                      />
+                      <div className="w-full">
+                        <input
+                          type="text"
+                          placeholder={`Full name`}
+                          value={guest.name}
+                          onChange={(e) =>
+                            handleGuestChange(guest.id, "name", e.target.value)
+                          }
+                          className={`w-full h-10 md:h-12 xl:h-14 rounded-lg px-4 border bg-white/80 focus:bg-white font-sans font-light text-xs outline-none transition-all ${
+                            errors[guest.id]
+                              ? "border-red-400 focus:border-red-400"
+                              : "border-white focus:border-[#dcd0c0]"
+                          }`}
+                        />
+                        {errors[guest.id] && (
+                          <p className="error-text">{errors[guest.id]}</p>
+                        )}
+                      </div>
 
                       {/* Guest Dietary */}
                       <input
@@ -594,9 +765,10 @@ function Home() {
             <div className="flex justify-center mt-6 -mb-16 md:-mb-20 relative z-20">
               <button
                 onClick={handleSubmit}
-                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm xl:text-base tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300"
+                disabled={isLoading}
+                className="bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm xl:text-base tracking-widest  text-[#2c2c2c] hover:scale-105 transition-transform duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Confirm the registration
+                {isLoading ? "Processing..." : "Confirm the registration"}
               </button>
             </div>
           </div>
@@ -621,9 +793,39 @@ function Home() {
               We are looking forward to welcoming you in our wedding.
             </p>
 
-            {/* Close Button (Optional) */}
+            {/* Close Button */}
             <button
               onClick={() => setShowSuccessPopup(false)}
+              className="mt-8 bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm tracking-widest hover:scale-105 transition-transform duration-300 uppercase"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* --- ERROR POPUP --- */}
+      {showErrorPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm popup-backdrop"
+            onClick={() => setShowErrorPopup(false)}
+          ></div>
+
+          {/* Popup Content */}
+          <div className="relative bg-[#F3E9D9] p-8 md:p-12 rounded-2xl popup-box max-w-md w-full text-center">
+            <h3 className="font-script text-xl md:text-2xl mb-4 text-red-800">
+              Something went wrong
+            </h3>
+            <p className="font-sans font-light text-base md:text-xl leading-relaxed">
+              Sorry, we couldn't process your registration. Please try again
+              later.
+            </p>
+
+            {/* Close Button */}
+            <button
+              onClick={() => setShowErrorPopup(false)}
               className="mt-8 bg-white border border-[#F3E9D9] shadow-md rounded-full px-8 py-3 md:px-12 md:py-4 font-sans font-bold text-xs md:text-sm tracking-widest hover:scale-105 transition-transform duration-300 uppercase"
             >
               Close
